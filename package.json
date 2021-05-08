@@ -1,0 +1,9 @@
+{
+  "name": "pruebas-automatizadas-e2e-grupo4",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^7.2.0",
+    "faker": "^5.5.3"
+  }
+}
