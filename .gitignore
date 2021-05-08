@@ -28,3 +28,4 @@ speed-measure-plugin*.json
 .DS_Store
 Thumbs.db
 update.js
+*.mp4
