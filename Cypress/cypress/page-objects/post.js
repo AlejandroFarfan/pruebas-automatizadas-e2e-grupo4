@@ -2,36 +2,65 @@
 import * as faker from 'faker'
 
 export class Post {
+    adminUrl = Cypress.config('ghostUrl')
+    publicSite = Cypress.config('ghostUrl').split('ghost/')[0]
     postTitle = 'textarea[placeholder="Post Title"]'
     backToPostsList = 'a[href="#/posts/"]'
-    postPage = 'a[href="#/site/"]'
+    postEntry = '.gh-content-entry-title'
+    postCardTitle = 'h2.post-card-title'
 
-    goToPostsCreation() {
+    goToPostsSection() {
         cy.get('.gh-nav-list-new a').first().click()
+    }
+
+    getAndVisitUrl(selector) {
+        cy.get(selector).first().invoke('attr', 'href').then(href => {
+            cy.visit(this.adminUrl + href);
+        });
+    }
+
+    clickNewPost() {
         cy.get('.gh-btn').click()
     }
 
     createPostWithNoContents() {
-        this.goToPostsCreation()
+        this.clickNewPost()
         cy.get(this.backToPostsList).first().click()
-        cy.get('.gh-content-entry-title').first().should('not.have.text', '(Untitled)')
-
-        this.goToPostsCreation()
-        cy.get(this.postTitle).click()
-        cy.get(this.backToPostsList).first().click()
-        cy.get('.gh-content-entry-title').first().should('have.text', '(Untitled)')
-        cy.get(this.postPage).first().click()
-        cy.get('.post-card').first().get('h2 .post-card-title').should('not.have.text', '(Untitled)')
+        //verify that empty post has not been created
+        cy.get(this.postEntry).first().should('not.contain.text', '(Untitled)')
     }
 
-    createPostWithContents(valid) {
-        let title = valid ? faker.lorem.text() : ''
-        cy.get('.gh-nav-list-new a').first().click()
-        cy.get('.gh-btn').click()
-        cy.get('textarea[placeholder="Post Title"]').type(title)
-        cy.get('a[href="#/posts/"]').click()
-        cy.get('.gh-content-entry-title').first().should('have.text',"Welcome to Ghost")
-        // cy.get('.koenig-editor__editor').click().type(paragraph).type(paragraph)
+    createPostUntitled() {
+        this.clickNewPost()
+        cy.get(this.postTitle).click()
+        cy.get(this.backToPostsList).first().click()
+        cy.get(this.postEntry).first().should("contain.text", '(Untitled)');
+
+        //verify that untitled post is unpublished
+        cy.visit(this.publicSite)
+        cy.get(this.postCardTitle).first().should('not.contain.text', '(Untitled)')
+    }
+
+    editFirstPost(valid) {
+        let title = valid ? faker.lorem.sentence(10) : faker.lorem.sentence(100)
+        this.getAndVisitUrl('a[title="Edit this post"]')
+        cy.get('textarea[placeholder="Post Title"]').clear().type(title)
+        cy.get('.koenig-editor__editor').type(faker.lorem.paragraph() + '{enter}').type(faker.lorem.paragraph())
+        cy.get('div.gh-publishmenu.ember-view').first().click()
+        cy.get('.gh-publishmenu-button').first().click()
+
+        if (valid) {
+            cy.get('.gh-notifications').should('be.visible')
+            cy.visit(this.publicSite)
+            cy.get(this.postCardTitle).first().should('contain.text', title)
+            
+        } else {
+            cy.get('aside.gh-alerts.ember-view').should('be.visible').should('contain.text', 'Saving failed: Title cannot be longer than 255 characters.')
+            cy.get(this.backToPostsList).first().click()
+            cy.get('.gh-btn-red span').contains('Leave').click()
+            cy.get(this.postEntry).first().should("contain.text", '(Untitled)');
+        }
+        
     }
 
     addBookmark(valid) {
