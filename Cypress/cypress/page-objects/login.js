@@ -3,8 +3,8 @@ import * as faker from 'faker'
 
 export class Login {
     url = Cypress.config('ghostUrl')
-    email = "user@email.com"
-    password = "abc123xyz456"
+    email = Cypress.config('ghostAdminUser')
+    password = Cypress.config('ghostAdminPwd')
 
     login(valid) {
         cy.visit(this.url + "#/signin")

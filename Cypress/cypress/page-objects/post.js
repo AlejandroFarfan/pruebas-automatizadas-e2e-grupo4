@@ -79,4 +79,14 @@ export class Post {
 
     }
 
+    clickPostSettings(){
+        cy.get('button.post-settings').click();
+        cy.wait(1000);
+    }
+
+    checkTagOptionExist(tagName){
+        cy.get('label').contains('Tags').next().click();
+        cy.wait(1000);
+        cy.get('li.ember-power-select-option').contains(tagName).should('exist')
+    }
 }

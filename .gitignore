@@ -28,4 +28,7 @@ speed-measure-plugin*.json
 .DS_Store
 Thumbs.db
 update.js
-*.mp4
+
+#kraken project
+/kraken/KrakenMobile-1.0.9
+/kraken/ghostTests/reports
