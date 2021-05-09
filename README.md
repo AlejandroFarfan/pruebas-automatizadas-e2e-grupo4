@@ -44,3 +44,9 @@ Publicar posts:
 2. Create unpublished untitled post: Crear un post al hacer click en el campo de texto del título, validar que aparezca en la lista de posts creados, pero no en los posts publicados en el home del sitio de Ghost.
 3. Edit post with invalid title length and try to publish it: Editar el primer post de la lista de posts creados, con un título que excede los 256 caracteres permitidos, y validar que este no haya sido actualizado.
 4. Edit post with valid title and publish it: Editar el primer post de la lista de posts creados, con un título válido y con un contenido, publicarlo y validar que aparezca en la primer card de posts publicados en el home del sitio de Ghost.
+
+Administrar tags
+1. Internal tags should start by #: Luego de login, crear un tag que comience con # y validar que aparezcan en el la lista de tags internos
+2. New Tag should be visible on post settings: Luego de Login, crear un tag y valida que este disponible para ser usado en las configuraciones de un post
+3. Deleted tag shoud not be on tagList: Luego de login, elimina un tag que no tenga post y lo elimina, valida que no aparezca en la lista de tags
+4. Tag updates should be visible on webSite: Luego de Login, edita nombre, descripcion y slug un tag que tenga posts asociados y luego valida que el sitio muestre los cambios hechos en la pagina del tag. 
