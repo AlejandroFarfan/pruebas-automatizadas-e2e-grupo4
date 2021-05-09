@@ -23,4 +23,17 @@ if ENV["ADB_DEVICE_ARG"].nil?
     @driver.navigate.to $url
     sleep 2
   end
+
+  Then(/^I store a variable with the current tagName$/) do
+    $tagName=  @driver.find_element(:css, "input[name='name']").attribute("value")
+    File.write('./.deletedTag.txt', $tagName)
+    puts($tagName) 
+  end
+
+  Then(/^I check deltedTag is not Listed$/) do
+    $tagName = IO.read("./.deletedTag.txt")
+    File.delete('./.deletedTag.txt')
+    $isTagPresent = @driver.find_elements(:xpath, "//h3[contains(@class, 'gh-tag-list-name') and text()='"+$tagName+"']").length()>0
+    raise 'ERROR: tag was not deleted' if $isTagPresent == true
+  end
 end
