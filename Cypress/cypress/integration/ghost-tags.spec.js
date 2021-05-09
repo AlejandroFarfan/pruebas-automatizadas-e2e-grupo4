@@ -13,12 +13,23 @@ describe('Tags E2E testing', () => {
         tagPage.goToTagList()
     })
 
-    it('Create new Tag', () => {
-        let newTagName = faker.name.firstName()
+    it('New Tag should be visible on post settings', () => {
+        const newTagName = faker.name.firstName()
         tagPage.createTag(newTagName);
         post.goToPostsSection();
         post.clickNewPost();
         post.clickPostSettings();
         post.checkTagOptionExist(newTagName)
+    })
+
+    it('Tag updates should be visible on webSite', () => {
+        const newTagName = faker.name.firstName();
+        const newTagDescription = faker.commerce.productDescription();
+        tagPage.clickOnTagWithPost()
+        tagPage.setTagName(newTagName)
+        tagPage.setTagDescription(newTagDescription)
+        tagPage.updateAndGoToWebSite();
+        tagPage.checkTagWebSiteTitle(newTagName)
+        tagPage.checkTagWebSiteDescription(newTagDescription)
     })
 })
