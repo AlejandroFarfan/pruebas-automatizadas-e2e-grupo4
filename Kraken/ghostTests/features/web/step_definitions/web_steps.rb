@@ -36,4 +36,9 @@ if ENV["ADB_DEVICE_ARG"].nil?
     $isTagPresent = @driver.find_elements(:xpath, "//h3[contains(@class, 'gh-tag-list-name') and text()='"+$tagName+"']").length()>0
     raise 'ERROR: tag was not deleted' if $isTagPresent == true
   end
+
+  Then(/^I check "([^\"]*)" is listed$/) do |selector|
+    $isTagPresent = @driver.find_elements(:xpath, "//h3[contains(@class, 'gh-tag-list-name') and text()='"+selector+"']").length()>0
+    raise 'ERROR: tag is not present' if $isTagPresent == false
+  end
 end
