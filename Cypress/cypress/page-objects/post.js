@@ -26,8 +26,9 @@ export class Post {
     createPostWithNoContents() {
         this.clickNewPost()
         cy.get(this.backToPostsList).first().click()
+
         //verify that empty post has not been created
-        cy.get(this.postEntry).first().should('not.contain.text', '(Untitled)')
+        cy.get(this.postEntry).first().should('not.contain.text', 'Post Title')
     }
 
     createPostUntitled() {
@@ -61,22 +62,6 @@ export class Post {
             cy.get(this.postEntry).first().should("contain.text", '(Untitled)');
         }
         
-    }
-
-    addBookmark(valid) {
-        // let url = 'https://docs.cypress.io'
-        // let bookmarkUrl = valid ? url : faker.internet.url()
-        // cy.get('.koenig-plus-menu-button').click()
-        // cy.get('.f-supersmall').contains('Bookmark').click()
-        // cy.get('input[name="url"]').type(bookmarkUrl).type({enter})
-        // cy.wait(2000)
-
-        // if (!valid) {
-        //     cy.get('span.mr3').contains('There was an error when parsing the URL.')
-        //     cy.get('data-ember-action-1619').click()
-        //     cy.get('input[name="url"]').type({selectall} + url)
-        // }
-
     }
 
     clickPostSettings(){

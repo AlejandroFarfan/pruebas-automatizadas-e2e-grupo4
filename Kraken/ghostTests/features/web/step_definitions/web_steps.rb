@@ -41,4 +41,27 @@ if ENV["ADB_DEVICE_ARG"].nil?
     $isTagPresent = @driver.find_elements(:xpath, "//h3[contains(@class, 'gh-tag-list-name') and text()='"+selector+"']").length()>0
     raise 'ERROR: tag is not present' if $isTagPresent == false
   end
+
+  # ------Posts additional steps
+
+  Then(/^I should not see text "([^\"]*)" in posts section$/) do |text|
+    @driver.find_elements(:xpath, "//h3[contains(@class, 'gh-content-entry-title') and text()='"+text+"']").length()<1
+  end
+
+  Then(/^I should see text "([^\"]*)" in posts section$/) do |text|
+    @driver.find_elements(:xpath, "//h3[contains(@class, 'gh-content-entry-title') and text()='"+text+"']").length()>0
+  end
+
+  Then(/^I clear post input field having css selector "([^\"]*)"$/) do |selector|
+    @driver.find_element(:css, selector).clear
+    sleep 2
+  end
+
+  Then(/^I check that post with title "([^\"]*)" is published$/) do |text|
+    @driver.find_elements(:xpath, "//h2[contains(@class, 'post-card-title') and text()='"+text+"']").length()>0
+  end
+
+  Then(/^I check that post with title "([^\"]*)" is not published$/) do |text|
+    @driver.find_elements(:xpath, "//h2[contains(@class, 'post-card-title') and text()='"+text+"']").length()<1
+  end
 end
