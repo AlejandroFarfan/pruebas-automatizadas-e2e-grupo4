@@ -1,4 +1,4 @@
-Feature: Tag updates should be visible on webSite
+Feature: update user name
 
   @user1 @web
   Scenario: update user name

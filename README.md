@@ -1,5 +1,12 @@
 # pruebas-automatizadas-e2e-grupo4
 
+Escenarios de pruebas automatizados por:
+
+Ana Castillo 
+Alejandro Farfán
+Leonardo Garzón
+Oscar Ortiz
+
 ## Instrucciones
 
 ### Se necesita tener instalado y configurado: 
@@ -36,17 +43,38 @@
 2. Publicar pages
 3. Administrar tags
 4. Gestionar links de navegación
-5. 
+5. Manejo de usuarios
 
 ## Descripción de escenarios
+
+Los escenarios realizados en cypress se implementaron siguien el patro de pruebas PageObject mientras que los realizados con la herramienta kraken siguen el patron Given-When-Then. La edfinicion, de acuerdo a las funcionalidades, son: 
+
 Publicar posts: 
 1. Attempt to create post without contents: Crear post sin editar ningún campo y validar que no haya sido creado en la lista de posts.
 2. Create unpublished untitled post: Crear un post al hacer click en el campo de texto del título, validar que aparezca en la lista de posts creados, pero no en los posts publicados en el home del sitio de Ghost.
 3. Edit post with invalid title length and try to publish it: Editar el primer post de la lista de posts creados, con un título que excede los 256 caracteres permitidos, y validar que este no haya sido actualizado.
 4. Edit post with valid title and publish it: Editar el primer post de la lista de posts creados, con un título válido y con un contenido, publicarlo y validar que aparezca en la primer card de posts publicados en el home del sitio de Ghost.
 
+Publicar pages
+1. 
+2. 
+3. 
+4. 
+
 Administrar tags
 1. Internal tags should start by #: Luego de login, crear un tag que comience con # y validar que aparezcan en el la lista de tags internos
 2. New Tag should be visible on post settings: Luego de Login, crear un tag y valida que este disponible para ser usado en las configuraciones de un post
 3. Deleted tag shoud not be on tagList: Luego de login, elimina un tag que no tenga post y lo elimina, valida que no aparezca en la lista de tags
 4. Tag updates should be visible on webSite: Luego de Login, edita nombre, descripcion y slug un tag que tenga posts asociados y luego valida que el sitio muestre los cambios hechos en la pagina del tag. 
+
+Gestionar links de navegación
+1. 
+2. 
+3. 
+4. 
+5. 
+
+Manejo de usuarios
+1. Invalid login: Intenga registrarse en el sistema con un nombre de usuario y contraseña aleatorio.
+2. Valid login: Se autentica en el sistema con los nombres de usuario y contraseñas del archivo de de configuración.
+3. update user name: Luego ed login, se accede a la informacion de perfil de usuario y se actualiza el nombre del usuario
