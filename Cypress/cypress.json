@@ -1,3 +1,6 @@
 {
-    "ghostUrl": "http://localhost:2368/ghost/"
+    "ghostUrl": "http://localhost:2368/ghost/",
+    "ghostAdminUser": "admin@uniandes.edu.co",
+    "ghostAdminPwd": "0123456789",
+    "chromeWebSecurity": false
 }
