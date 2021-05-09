@@ -1,6 +1,7 @@
 {
     "@user1": {
         "GHOST_URL_SIGIN":"http://localhost:2368/ghost/#/signin",
-        "ADMIN_USER": "admin@uniandes.edu.co"
+        "ADMIN_USER": "admin@uniandes.edu.co",
+        "ADMIN_PASSWORD": "0123456789"
     }
 }
