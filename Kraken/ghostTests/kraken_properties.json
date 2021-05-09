@@ -1,0 +1,8 @@
+{
+    "@user1": {
+        "GHOST_URL_SIGIN":"http://localhost:2368/ghost/#/signin",
+        "GHOST_TAG_WEBSITE":"http://localhost:2368/tag/",
+        "ADMIN_USER": "admin@uniandes.edu.co",
+        "ADMIN_PASSWORD": "0123456789"
+    }
+}
