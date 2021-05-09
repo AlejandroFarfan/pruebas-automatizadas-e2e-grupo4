@@ -32,4 +32,9 @@ describe('Tags E2E testing', () => {
         tagPage.checkTagWebSiteTitle(newTagName)
         tagPage.checkTagWebSiteDescription(newTagDescription)
     })
+
+    it('Deleted tag shoud not be on tagList', () => {
+        tagPage.clickOnTagWithNoPost();
+        tagPage.deleteTagAndCheckIsNotInList();
+    })
 })

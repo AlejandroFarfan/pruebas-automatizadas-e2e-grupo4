@@ -17,10 +17,16 @@ export class TagPage {
         cy.get(this.inputName).type(tagName, { force: true })
         this.saveTag()
         cy.visit(this.url + "#/tags")
+        cy.wait(1000);
     }
 
     clickOnTagWithPost() {
         cy.get('a[href*="?tag="]').next().click({ force: true })
+        cy.wait(1000);
+    }
+
+    clickOnTagWithNoPost() {
+        cy.get('.tags-list .gh-tag-list-posts-count[href*="/tags/"]').first().next().click({ force: true })
         cy.wait(1000);
     }
 
@@ -42,6 +48,7 @@ export class TagPage {
             this.saveTag()
             cy.log(url)
             cy.visit(url)
+            cy.wait(1000)
         });
     }
 
@@ -51,5 +58,16 @@ export class TagPage {
 
     checkTagWebSiteDescription(description) {
         cy.get(this.tatagWebDescription).contains(description).should('exist')
+    }
+
+    deleteTagAndCheckIsNotInList() {
+        cy.get(this.inputName).invoke('val').then(tagName=>{
+            cy.get('button>span').contains('Delete tag').click({ force: true })
+            cy.wait(1000);
+            cy.get('.modal-footer>button>span').contains('Delete').click({ force: true })
+            cy.wait(1000);
+            this.goToTagList();
+            cy.get('h3.gh-tag-list-name').contains(tagName).should('not.exist')
+        })
     }
 }
