@@ -37,4 +37,11 @@ describe('Tags E2E testing', () => {
         tagPage.clickOnTagWithNoPost();
         tagPage.deleteTagAndCheckIsNotInList();
     })
+
+    it('internal tags should start by #', () => {
+        const newTagName = '#' + faker.name.firstName();
+        tagPage.createTag(newTagName);
+        tagPage.clickOnInternalTab();
+        tagPage.checkTagOnList(newTagName)
+    })
 })

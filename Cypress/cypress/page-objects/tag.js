@@ -61,7 +61,7 @@ export class TagPage {
     }
 
     deleteTagAndCheckIsNotInList() {
-        cy.get(this.inputName).invoke('val').then(tagName=>{
+        cy.get(this.inputName).invoke('val').then(tagName => {
             cy.get('button>span').contains('Delete tag').click({ force: true })
             cy.wait(1000);
             cy.get('.modal-footer>button>span').contains('Delete').click({ force: true })
@@ -69,5 +69,14 @@ export class TagPage {
             this.goToTagList();
             cy.get('h3.gh-tag-list-name').contains(tagName).should('not.exist')
         })
+    }
+
+    clickOnInternalTab() {
+        cy.get('button>span').contains('Internal tags').click()
+        cy.wait(1000)
+    }
+
+    checkTagOnList(name){
+        cy.get('h3.gh-tag-list-name').contains(name).should('exist')
     }
 }
