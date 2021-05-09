@@ -64,4 +64,23 @@ if ENV["ADB_DEVICE_ARG"].nil?
   Then(/^I check that post with title "([^\"]*)" is not published$/) do |text|
     @driver.find_elements(:xpath, "//h2[contains(@class, 'post-card-title') and text()='"+text+"']").length()<1
   end
+
+  Then(
+    /^I count elements having css selector "([^\"]*)" and store count in variable$/
+  ) do |selector|
+    $count_variable = @driver.find_elements(:css, selector).length()
+    File.write('./.count.txt', $count_variable)
+    puts $count_variable
+  end
+
+  Then(
+    /^I compare elements having css selector "([^\"]*)" with stored variable minus 1$/
+  ) do |selector|
+    $count_variable = @driver.find_elements(:css, selector).length()
+    $old_count_variable = IO.read("./.count.txt")
+    puts $count_variable
+    $compareResult = $count_variable == ($old_count_variable.to_i - 1)
+
+    raise 'ERROR: Values are not equal' if $compareResult == false
+  end
 end
