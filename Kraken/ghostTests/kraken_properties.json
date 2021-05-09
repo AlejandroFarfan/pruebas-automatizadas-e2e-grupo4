@@ -4,6 +4,7 @@
         "GHOST_WEBSITE":"http://localhost:2368/",
         "GHOST_TAG_WEBSITE":"http://localhost:2368/tag/",
         "GHOST_POST_SECTION":"http://localhost:2368/ghost/#/posts",
+        "GHOST_PAGE_SECTION":"http://localhost:2368/ghost/#/pages",
         "ADMIN_USER": "user@email.com",
         "ADMIN_PASSWORD": "abc123xyz456"
     }
