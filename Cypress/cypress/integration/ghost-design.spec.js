@@ -1,5 +1,5 @@
-import { DesignPage } from "../page-objects/design-page"
-import { HomePage } from "../page-objects/home-page"
+import { DesignPage } from "../page-objects/design"
+import { HomePage } from "../page-objects/home"
 import { Login } from "../page-objects/login"
 
 describe('Manage navigation links', () => {

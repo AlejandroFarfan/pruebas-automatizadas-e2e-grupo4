@@ -1,6 +1,6 @@
 export class HomePage {
   navigate() {
-    cy.visit('http://127.0.0.1:2368/')
+    cy.visit('http://localhost:2368/')
   }
 
   getMainMenuLastItem() {
