@@ -42,6 +42,11 @@ if ENV["ADB_DEVICE_ARG"].nil?
     raise 'ERROR: tag is not present' if $isTagPresent == false
   end
 
+  #Login
+  Then(/^I should see text "([^\"]*)" in login alert div$/) do |text|
+    @driver.find_elements(:xpath, "//p[contains(@class, 'main-error') and text()='"+text+"']").length()<1
+  end
+
   # ------Posts additional steps
 
   Then(/^I should not see text "([^\"]*)" in posts section$/) do |text|
