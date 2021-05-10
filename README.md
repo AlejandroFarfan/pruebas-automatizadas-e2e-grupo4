@@ -40,7 +40,7 @@ Oscar Ortiz
 ## Funcionalidades bajo pruebas
 
 1. Publicar posts: Crear, editar y publicar posts desde el módulo de administrador para que aparezcan en la página de inicio de Ghost.
-2. Publicar pages
+2. Publicar pages: Crear, editar, publicar y eliminar paginas desde el modulo administrador.
 3. Administrar tags
 4. Gestionar links de navegación
 5. Manejo de usuarios
@@ -56,10 +56,10 @@ Publicar posts:
 4. Edit post with valid title and publish it: Editar el primer post de la lista de posts creados, con un título válido y con un contenido, publicarlo y validar que aparezca en la primer card de posts publicados en el home del sitio de Ghost.
 
 Publicar pages
-1. 
-2. 
-3. 
-4. 
+1. Attempt to create page and publish: Crea una pagina y la publica en el sitio.
+2. Attempt to create page without content: Crea una pagina sin contenido.
+3. Edit first page and publish it: Se modifica la primera pagina y se publica.
+4. Attempt to delete page: Se elimina una pagina almacenada.
 
 Administrar tags
 1. Internal tags should start by #: Luego de login, crear un tag que comience con # y validar que aparezcan en el la lista de tags internos
