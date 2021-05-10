@@ -40,6 +40,7 @@ Escenarios de pruebas automatizados por:
 4. Ejecutar `bundle install`
 5. Ejecutar las pruebas con el comando `bundle exec kraken-mobile run --properties=kraken_properties.json`
 6. ver reporte en Kraken\ghostTest\reports
+* Asegúrese de que la ruta del repositorio no sea muy larga, para que los reportes funcionen
 
 ## Funcionalidades bajo pruebas
 
