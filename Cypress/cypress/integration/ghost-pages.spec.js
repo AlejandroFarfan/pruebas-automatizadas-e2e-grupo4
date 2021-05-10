@@ -16,7 +16,7 @@ describe('Testing Pages creation', () => {
     })
 
     it('Create and published page', () => {
-        page.createPagePublished()
+        page.createPageUnpublished()
     })
 
     it('Edit first created page', () => {

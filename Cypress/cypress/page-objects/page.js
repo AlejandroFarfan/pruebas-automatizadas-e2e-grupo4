@@ -30,12 +30,14 @@ export class Page {
         cy.get(this.pageEntry).first().should('contain.text', '(Untitled)')
     }
 
-    createPagePublished() {
+    createPageUnpublished() {
         this.clickNewPage()
         cy.get(this.pageTitle).click()
         cy.get(this.backToPageList).first().click()
-        cy.get(this.pageEntry).first().should('contain.text', '(Untitled)')
+        cy.get(this.pageEntry).first().should("contain.text", '(Untitled)');
 
+        cy.visit(this.publicSite)
+        cy.get(this.postCardTitle).first().should('not.contain.text', '(Untitled)')
     }
 
     editFirstPage() {
