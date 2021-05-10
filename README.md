@@ -28,7 +28,7 @@ Escenarios de pruebas automatizados por:
 
 1. Desde un terminar de comandos dirigirse a la raiz del proyecto
 2. Ejecutar `npm install`
-2. Actaulizar el archivo _Cypress/cypress.json_ con las valores correctos de los parametros de la aplicación bajo pruebas
+2. Actualizar el archivo _Cypress/cypress.json_ con las valores correctos de los parametros de la aplicación bajo pruebas
 3. Ejecutar `cypress open --project ./Cypress`
 4. En la ventana que se despliega, hacer clic donde dice "Run * integration specs"
 
@@ -45,9 +45,9 @@ Escenarios de pruebas automatizados por:
 
 1. Publicar posts: Crear, editar y publicar posts desde el módulo de administrador para que aparezcan en la página de inicio de Ghost.
 2. Publicar pages: Crear, editar, publicar y eliminar paginas desde el modulo administrador.
-3. Administrar tags
-4. Administrar enlaces de navegación
-5. Manejo de usuarios
+3. Administrar tags: Crear, editar, asignar a contenidos y eliminar tags
+4. Administrar enlaces de navegación: Crear, editar y eliminar enlaces en el menú de navegación principal y secundario
+5. Manejo de usuarios: Inicio de sesión y modificación del perfil de usuario administrador
 
 ## Descripción de escenarios
 
@@ -81,4 +81,4 @@ Administrar enlaces de navegación
 Manejo de usuarios
 1. Invalid login: Intenga registrarse en el sistema con un nombre de usuario y contraseña aleatorio.
 2. Valid login: Se autentica en el sistema con los nombres de usuario y contraseñas del archivo de de configuración.
-3. update user name: Luego ed login, se accede a la informacion de perfil de usuario y se actualiza el nombre del usuario
+3. update user name: Luego del login, se accede a la información de perfil de usuario y se actualiza el nombre del usuario
