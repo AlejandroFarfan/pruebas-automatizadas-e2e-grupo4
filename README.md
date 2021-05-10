@@ -46,7 +46,7 @@ Escenarios de pruebas automatizados por:
 1. Publicar posts: Crear, editar y publicar posts desde el módulo de administrador para que aparezcan en la página de inicio de Ghost.
 2. Publicar pages: Crear, editar, publicar y eliminar paginas desde el modulo administrador.
 3. Administrar tags
-4. Gestionar links de navegación
+4. Administrar enlaces de navegación
 5. Manejo de usuarios
 
 ## Descripción de escenarios
@@ -71,12 +71,12 @@ Administrar tags
 3. Deleted tag shoud not be on tagList: Luego de login, elimina un tag que no tenga post y lo elimina, valida que no aparezca en la lista de tags
 4. Tag updates should be visible on webSite: Luego de Login, edita nombre, descripcion y slug un tag que tenga posts asociados y luego valida que el sitio muestre los cambios hechos en la pagina del tag. 
 
-Gestionar links de navegación
-1. 
-2. 
-3. 
-4. 
-5. 
+Administrar enlaces de navegación
+1. Creates a link in main navigation: Crear un enlace en el menú principal de navegación (ubicado en el sitio público en la parte superior izquierda) y verificar que existe en el homepage.
+2. Edits a link in main navigation: Editar un enlace en el menú principal de navegación (ubicado en el sitio público en la parte superior izquierda) y verificar que fue modificado en el homepage.
+3. Deletes a link in main navigation: Eliminar un enlace en el menú principal de navegación (ubicado en el sitio público en la parte superior izquierda) y verificar que fue eliminado en el homepage.
+4. Creates a link in secondary navigation: Crear un enlace en el menú secundario de navegación (ubicado en el sitio público en la parte superior derecha) y verificar que existe en el homepage.
+5. Deletes a link in secondary navigation: Eliminar un enlace en el menú secundario de navegación (ubicado en el sitio público en la parte superior derecha) y verificar que fue eliminado en el homepage.
 
 Manejo de usuarios
 1. Invalid login: Intenga registrarse en el sistema con un nombre de usuario y contraseña aleatorio.
