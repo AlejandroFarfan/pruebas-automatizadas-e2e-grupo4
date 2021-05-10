@@ -11,5 +11,5 @@ Feature: Delete a navigation link in main menu
     Then I click on element having css selector "a[href*='design']"
     Then I click on element having css selector "#settings-navigation > .sortable-objects > div:last-child button.gh-blognav-delete"
     Then I click on element having css selector "main button:first-child"
-    Then I navigate to page "<GHOST_WEBSITE>"
+    Then I navigate to page "http://localhost:2368"
     Then I compare elements having css selector "header nav .site-nav-left ul li" with stored variable minus 1
