@@ -1,5 +1,7 @@
 export class HomePage {
   navigate() {
+    cy.wait(1000)
+
     cy.visit('http://localhost:2368/')
   }
 
