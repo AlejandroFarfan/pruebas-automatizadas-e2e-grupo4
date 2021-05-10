@@ -1,7 +1,7 @@
-Feature: Attempt to create page without content
+Feature: Attempt to create page and publish
 
   @user1 @web
-  Scenario: As an admin user I cannot create an empty post
+  Scenario: As an admin user I create and publish page
     Given I navigate to page "<GHOST_URL_SIGIN>"
       When I enter "<ADMIN_USER>" into input field having id "ember8"
       When I enter "<ADMIN_PASSWORD>" into input field having id "ember10"

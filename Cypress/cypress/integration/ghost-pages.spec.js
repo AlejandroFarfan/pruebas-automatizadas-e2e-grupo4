@@ -6,7 +6,7 @@ import {Page} from "../page-objects/page";
 const login = new Login()
 const page = new Page()
 
-describe('Testing Posts creation', () => {
+describe('Testing Pages creation', () => {
     beforeEach(()=>{
         login.login(true)
         page.goToPagesSection()
@@ -15,8 +15,8 @@ describe('Testing Posts creation', () => {
         page.createPageWithNoContent()
     })
 
-    it('Create unpublished untitled page', () => {
-        page.createPageUnpublished()
+    it('Create and published page', () => {
+        page.createPagePublished()
     })
 
     it('Edit first created page', () => {

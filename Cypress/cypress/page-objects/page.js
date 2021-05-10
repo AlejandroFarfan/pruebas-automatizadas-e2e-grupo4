@@ -20,7 +20,7 @@ export class Page {
     }
 
     clickNewPage() {
-        cy.get('.gh-btn').click({force: true})
+        cy.get('a[href*="#/editor/page/"]').first().click({force: true})
     }
 
     createPageWithNoContent() {
@@ -30,7 +30,7 @@ export class Page {
         cy.get(this.pageEntry).first().should('contain.text', '(Untitled)')
     }
 
-    createPageUnpublished() {
+    createPagePublished() {
         this.clickNewPage()
         cy.get(this.pageTitle).click()
         cy.get(this.backToPageList).first().click()
@@ -57,5 +57,6 @@ export class Page {
         cy.get('.post-settings').click()
         cy.get('form > .gh-btn > span').click()
         cy.get('.gh-btn-red').first().click()
+        cy.wait(2000)
     }
 }
