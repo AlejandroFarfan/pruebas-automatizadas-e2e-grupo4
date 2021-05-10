@@ -2,10 +2,14 @@
 
 Escenarios de pruebas automatizados por:
 
-Ana Castillo 
-Alejandro Farfán
-Leonardo Garzón
-Oscar Ortiz
+* Alejandro Farfán - a.farfanm@uniandes.edu.co
+
+* Ana Castillo - a.castillob@uniandes.edu.co
+
+* Leonardo Garzón - l.garzonr@uniandes.edu.co
+
+* Oscar Ortiz - o.ortizf@uniandes.edu.co
+
 
 ## Instrucciones
 
