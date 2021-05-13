@@ -36,13 +36,8 @@ export class TagPage {
         cy.get('button>span').contains('Save').click()
     }
 
-    updateAndGoToWebSite() {
-        cy.get(this.tagWebURL).invoke('text').then(url => {
-            this.clickOnSaveTag()
-            cy.log(url)
-            cy.visit(url)
-            cy.wait(1000)
-        });
+    getTagWeb(){
+        return cy.get(this.tagWebURL).invoke('text')
     }
 
     checkTagWebSiteTitle(name) {

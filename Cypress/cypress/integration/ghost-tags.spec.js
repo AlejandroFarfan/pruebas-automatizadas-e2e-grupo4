@@ -37,14 +37,23 @@ describe('Tags E2E testing', () => {
     })
 
     it('Tag updates should be visible on webSite', () => {
+        cy.screenshot('scenario2').wait(1000);
         const newTagName = faker.name.firstName();
         const newTagDescription = faker.commerce.productDescription();
         tagPage.clickOnTagWithPost()
+        cy.screenshot('scenario2').wait(1000)
         tagPage.setTagName(newTagName)
+        cy.screenshot('scenario2').wait(1000)
         tagPage.setTagDescription(newTagDescription)
-        tagPage.updateAndGoToWebSite();
-        tagPage.checkTagWebSiteTitle(newTagName)
-        tagPage.checkTagWebSiteDescription(newTagDescription)
+        cy.screenshot('scenario2').wait(1000)
+        tagPage.getTagWeb().then(urlText=>{
+            tagPage.clickOnSaveTag()
+            cy.screenshot('scenario2').wait(1000)
+            cy.visit(urlText).wait(2000)
+            cy.screenshot('scenario2', { capture: 'viewport' }).wait(1000)
+            tagPage.checkTagWebSiteTitle(newTagName)
+            tagPage.checkTagWebSiteDescription(newTagDescription)
+        })
     })
 
     it('Deleted tag shoud not be on tagList', () => {
