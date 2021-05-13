@@ -7,19 +7,33 @@ describe('Tags E2E testing', () => {
     const login = new Login()
     const tagPage = new TagPage()
     const post = new Post()
+    const url = Cypress.config('ghostUrl')
 
     beforeEach(() => {
+        // cy.setResolution([2560, 1440]);
         login.login(true)
         tagPage.goToTagList()
     })
 
     it('New Tag should be visible on post settings', () => {
+        cy.screenshot('scenario1').wait(1000)
+        tagPage.clickOnNewTag();
+        cy.screenshot('scenario1').wait(1000)
         const newTagName = faker.name.firstName()
-        tagPage.createTag(newTagName);
+        tagPage.setTagName(newTagName);
+        cy.screenshot('scenario1').wait(1000)
+        tagPage.clickOnSaveTag();
+        cy.screenshot('scenario1').wait(1000)
+        cy.visit(url + "#/tags").wait(2000)
+        cy.screenshot('scenario1').wait(1000)
         post.goToPostsSection();
+        cy.screenshot('scenario1').wait(1000)
         post.clickNewPost();
+        cy.screenshot('scenario1').wait(1000)
         post.clickPostSettings();
+        cy.screenshot('scenario1', { capture: 'viewport' }).wait(1000)
         post.checkTagOptionExist(newTagName)
+        cy.screenshot('scenario1', { capture: 'viewport' }).wait(1000)
     })
 
     it('Tag updates should be visible on webSite', () => {
