@@ -84,23 +84,18 @@ export class Page {
 
         cy.get('.gh-list-row')
         .then(($elements) => {
-            // count menu items
             const pages = $elements.length
             cy.log('pages count ', pages)
             this.getAndVisitUrl('a[title="Edit this post"]')
             cy.screenshot('scenario4_step'+step++).wait(1000)
             cy.get('.post-settings').click()
             cy.screenshot('scenario4_step'+step++).wait(1000)
-            cy.get('form > .gh-btn > span').click()
+            cy.wait(1000)
+            cy.get('form > .gh-btn > span').click().wait(1000)
             cy.screenshot('scenario4_step'+step++).wait(1000)
             cy.get('.gh-btn-red').first().click()
-            cy.wait(2000)
-            cy.screenshot('scenario4_step'+step++).wait(1000)
-
             this.goToPagesSection()
-
             cy.screenshot('scenario4_step'+step++).wait(1000)
-
             cy.get('.gh-list-row').should(($menuItems) => {
                 expect($menuItems).to.have.length(pages-1)
             })
