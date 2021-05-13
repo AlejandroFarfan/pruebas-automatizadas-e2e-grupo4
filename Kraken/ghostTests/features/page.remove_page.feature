@@ -1,3 +1,4 @@
+@page.remove-page
 Feature: Attempt to delete page
 
   @user1 @web

@@ -1,3 +1,4 @@
+@design.add-secondary-nav-link
 Feature: Add a navigation link in secondary menu
 
   @user1 @web

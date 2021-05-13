@@ -1,3 +1,4 @@
+@design.add-main-nav-link
 Feature: Add a navigation link in main menu
 
   @user1 @web

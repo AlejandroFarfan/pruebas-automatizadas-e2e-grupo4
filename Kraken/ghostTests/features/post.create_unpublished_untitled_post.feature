@@ -1,3 +1,4 @@
+@post.create-untitled
 Feature: Create untitled post
 
   @user1 @web

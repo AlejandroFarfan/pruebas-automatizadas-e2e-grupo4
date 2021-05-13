@@ -1,3 +1,4 @@
+@design.edit-main-nav-link
 Feature: Edit a navigation link in main menu
 
   @user1 @web

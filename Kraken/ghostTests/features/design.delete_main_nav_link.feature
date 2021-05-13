@@ -1,3 +1,4 @@
+@design.delete-main-nav-link
 Feature: Delete a navigation link in main menu
 
   @user1 @web

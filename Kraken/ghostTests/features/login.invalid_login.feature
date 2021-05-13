@@ -1,3 +1,4 @@
+@login.invalid-login
 Feature: Invalid login
 
   @user1 @web

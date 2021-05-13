@@ -1,3 +1,4 @@
+@tag.delete-tag
 Feature: Deleted tag shoud not be on tagList
 
   @user1 @web
