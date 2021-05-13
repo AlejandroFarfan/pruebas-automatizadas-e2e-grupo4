@@ -10,7 +10,6 @@ describe('Tags E2E testing', () => {
     const url = Cypress.config('ghostUrl')
 
     beforeEach(() => {
-        // cy.setResolution([2560, 1440]);
         login.login(true)
         tagPage.goToTagList()
     })
@@ -57,7 +56,9 @@ describe('Tags E2E testing', () => {
     })
 
     it('Deleted tag shoud not be on tagList', () => {
+        cy.screenshot('scenario3').wait(1000);
         tagPage.clickOnTagWithNoPost();
+        cy.screenshot('scenario3').wait(1000);
         tagPage.deleteTagAndCheckIsNotInList();
     })
 
