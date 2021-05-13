@@ -1,3 +1,4 @@
+@tag.create-internal-tag
 Feature: internal tags should start by #
 
   @user1 @web

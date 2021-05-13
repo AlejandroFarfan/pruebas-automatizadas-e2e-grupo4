@@ -1,3 +1,4 @@
+@post.edit-invalid
 Feature: Edit first post with invalid title length
 
   @user1 @web

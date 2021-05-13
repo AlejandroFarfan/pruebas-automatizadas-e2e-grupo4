@@ -1,3 +1,4 @@
+@login.valid-login
 Feature: Valid login
 
   @user1 @web

@@ -1,3 +1,4 @@
+@page.create-page-publish
 Feature: Attempt to create page and publish
 
   @user1 @web

@@ -1,3 +1,4 @@
+@u-user.edit-user-name
 Feature: update user name
 
   @user1 @web

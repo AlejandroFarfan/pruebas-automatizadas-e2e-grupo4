@@ -1,3 +1,4 @@
+@tag.edit-tag
 Feature: Tag updates should be visible on webSite
 
   @user1 @web

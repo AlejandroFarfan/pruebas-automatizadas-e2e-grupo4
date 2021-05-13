@@ -1,3 +1,4 @@
+@design.delete-secondary-nav-link
 Feature: Delete a navigation link in secondary menu
 
   @user1 @web

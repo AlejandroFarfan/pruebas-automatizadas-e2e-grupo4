@@ -1,5 +1,11 @@
 if ENV["ADB_DEVICE_ARG"].nil?
   require 'kraken-mobile/steps/web/kraken_steps'
+  $step = 1
+  $step_index = 1
+
+  Before do |scenario|
+    $scenario_name = scenario.source_tag_names[0][1..-1]
+  end
 
   Then(/^I click on element with xpath "([^\"]*)"$/) do |selector|
     @driver.find_element(:xpath, selector).click
@@ -87,5 +93,19 @@ if ENV["ADB_DEVICE_ARG"].nil?
     $compareResult = $count_variable == ($old_count_variable.to_i - 1)
 
     raise 'ERROR: Values are not equal' if $compareResult == false
+  end
+
+  # Hooks
+
+  AfterStep do |_scenario|
+    if $scenario_name[0..4] == "login" || $step_index > 3
+      Dir.mkdir("./screenshots") unless File.exist?("./screenshots")
+      Dir.mkdir("./screenshots/3.3.0") unless File.exist?("./screenshots/3.3.0")
+      path = "./screenshots/3.3.0/#{$scenario_name}-#{$step}.png"
+      $step += 1
+      @driver.save_screenshot(path)
+      embed(path, 'image/png', File.basename(path))
+    end
+    $step_index += 1
   end
 end
