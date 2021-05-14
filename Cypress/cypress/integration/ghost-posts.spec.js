@@ -6,7 +6,7 @@ import { Post } from "../page-objects/post"
 const login = new Login()
 const post = new Post()
 
-describe('Testing Posts creation', () => {
+describe('Testing posts creation', () => {
     beforeEach(()=>{
         login.login(true)
         post.goToPostsSection()
