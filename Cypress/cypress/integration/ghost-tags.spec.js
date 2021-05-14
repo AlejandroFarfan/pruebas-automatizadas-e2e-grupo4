@@ -75,9 +75,19 @@ describe('Tags E2E testing', () => {
     })
 
     it('internal tags should start by #', () => {
+        let step = 0;
+        cy.screenshot(screenPath + 'scenario4_step' + step++).wait(1000);
+        tagPage.clickOnNewTag();
+        cy.screenshot(screenPath + 'scenario4_step' + step++).wait(1000)
         const newTagName = '#' + faker.name.firstName();
-        tagPage.createTag(newTagName);
+        tagPage.setTagName(newTagName);
+        cy.screenshot(screenPath + 'scenario4_step' + step++).wait(1000)
+        tagPage.clickOnSaveTag();
+        cy.screenshot(screenPath + 'scenario4_step' + step++).wait(1000)
+        cy.visit(url + "#/tags").wait(2000)
+        cy.screenshot(screenPath + 'scenario4_step' + step++).wait(1000)
         tagPage.clickOnInternalTab();
+        cy.screenshot(screenPath + 'scenario4_step' + step++).wait(1000)
         tagPage.checkTagOnList(newTagName)
     })
 })
