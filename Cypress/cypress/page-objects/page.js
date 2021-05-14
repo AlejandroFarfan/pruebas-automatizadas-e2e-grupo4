@@ -8,7 +8,7 @@ export class Page {
     backToPageList = 'a[href="#/pages/"]'
     pageEntry = '.gh-content-entry-title'
     postCardTitle = 'h2.post-card-title'
-    screenPath = Cypress.config('ghostUnderTest')+'/'
+    screenPath = Cypress.config('ghostUnderTest')+'/page-'
 
     goToPagesSection() {
         cy.get('a[href*="#/pages/"]').click({force: true})
