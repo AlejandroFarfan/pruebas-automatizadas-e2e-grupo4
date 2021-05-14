@@ -48,16 +48,20 @@ export class TagPage {
         cy.get(this.tatagWebDescription).contains(description).should('exist')
     }
 
-    deleteTagAndCheckIsNotInList() {
-        cy.get(this.inputName).invoke('val').then(tagName => {
-            cy.get('button>span').contains('Delete tag').click({ force: true }).wait(2000)
-            cy.screenshot('scenario3').wait(1000);
-            cy.get('.modal-footer>button>span').contains('Delete').click({ force: true })
-            cy.screenshot('scenario3').wait(1000);
-            this.goToTagList();
-            cy.screenshot('scenario3').wait(1000);
-            cy.get('h3.gh-tag-list-name').contains(tagName).should('not.exist')
-        })
+    getTagNameValue(){
+        return cy.get(this.inputName).invoke('val')
+    }
+
+    clickOnDeleteTag(){
+        cy.get('button>span').contains('Delete tag').click({ force: true }).wait(2000)
+    }
+
+    clickOnConfirmDelete(){
+        cy.get('.modal-footer>button>span').contains('Delete').click({ force: true })
+    }
+
+    checkTagIsNotInList(tagName){
+        cy.get('h3.gh-tag-list-name').contains(tagName).should('not.exist')
     }
 
     clickOnInternalTab() {
