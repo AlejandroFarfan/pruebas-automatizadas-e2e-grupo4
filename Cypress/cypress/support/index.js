@@ -24,3 +24,9 @@ import './commands'
 // Cypress.Cookies.defaults({
 //     preserve: 'ghost-admin-api-session',
 //   })
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+  })
