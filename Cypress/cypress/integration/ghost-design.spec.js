@@ -14,25 +14,32 @@ describe('Manage navigation links', () => {
   })
 
   it('Creates a link in main navigation', () => {
+    designPage.takeScreenshot(1, 1)
     designPage.typeMainLabelField('Enlace nuevo')
 
     designPage.typeMainUrlField('https://www.google.com')
+    designPage.takeScreenshot(1, 2)
 
     designPage.saveChanges()
+    designPage.takeScreenshot(1, 3)
 
     homePage.navigate()
 
     homePage.getMainMenuLastItem()
       .should('have.class', 'nav-enlace-nuevo')
       .should('contain', 'Enlace nuevo')
+    designPage.takeScreenshot(1, 4, { capture: 'viewport' })
   })
 
   it('Edits a link in main navigation', () => {
+    designPage.takeScreenshot(2, 1)
     designPage.editMainLabelField(2, 'Otro enlace')
 
     designPage.editMainUrlField(2, 'https://www.facebook.com')
+    designPage.takeScreenshot(2, 2)
 
     designPage.saveChanges()
+    designPage.takeScreenshot(2, 3)
 
     homePage.navigate()
 
