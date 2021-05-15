@@ -1,0 +1,29 @@
+{
+    "scPaths": {
+        "ghost1": "../Kraken/ghostTests/screenshots/3.3.0/",
+        "ghost2": "../Kraken/ghostTests/screenshots/3.42.5/"
+    },
+    "scenarios": {
+        "data": [
+            {"name": "login.invalid-login", "stepsCount": 4},
+            {"name": "post.edit-invalid", "stepsCount": 10}
+        ]
+    },
+    "options":{
+        "output": {
+            "errorColor": {
+                "red": 255,
+                "green": 0,
+                "blue": 255
+            },
+            "errorType": "movement",
+            "largeImageThreshold": 1200,
+            "useCrossOrigin": false,
+            "outputDiff": true
+        },
+        "scaleToSameSize": true,
+        "ignore": "antialiasing"
+    },
+    "viewportHeight":600, 
+    "viewportWidth":800
+}
