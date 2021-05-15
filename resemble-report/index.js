@@ -14,14 +14,14 @@ async function executeTest(){
     if (!fs.existsSync(`./results/${datetime}/compare`)){
       fs.mkdirSync(`./results/${datetime}/compare`, { recursive: true });
     }
-        
+
     for (let i = 1; i <= scenarios.data[s].stepsCount; i++) {
       let data = await compareImages(
         fs.readFileSync(`${scPaths.ghost1}${scenarios.data[s].name}-${i}.png`),
         fs.readFileSync(`${scPaths.ghost2}${scenarios.data[s].name}-${i}.png`),
         options
       );
-      steps[i] = {
+      steps[`${scenarios.data[s].name}-${i}`] = {
           isSameDimensions: data.isSameDimensions,
           dimensionDifference: data.dimensionDifference,
           rawMisMatchPercentage: data.rawMisMatchPercentage,
@@ -55,7 +55,7 @@ function getScenarios(name, steps, info){
   for (let i = 1; i <= steps; i++) {
     body += `<hr><div>
       <h3>Step ${i}</h3>
-      <p>Data: ${JSON.stringify(info[i])}</p>
+      <p>Data: ${JSON.stringify(info[`${name}-${i}`])}</p>
     <div>
     <div class="imgline">
       <div class="imgcontainer">
