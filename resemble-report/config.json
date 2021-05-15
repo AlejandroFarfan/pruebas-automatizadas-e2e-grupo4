@@ -1,7 +1,9 @@
 {
     "scPaths": {
         "ghost1": "../Kraken/ghostTests/screenshots/3.3.0/",
-        "ghost2": "../Kraken/ghostTests/screenshots/3.42.5/"
+        "ghost2": "../Kraken/ghostTests/screenshots/3.42.5/",
+        "cypress1": "../Cypress/screenshots/3.3.0/",
+        "cypress2": "../Cypress/screenshots/3.42.5/"
     },
     "scenarios": {
         "data": [
