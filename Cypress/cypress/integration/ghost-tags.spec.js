@@ -8,7 +8,7 @@ describe('Tags E2E testing', () => {
     const tagPage = new TagPage()
     const post = new Post()
     const url = Cypress.config('ghostUrl')
-    const screenPath = Cypress.config('ghostUnderTest') + '/'
+    const screenPath = Cypress.config('ghostUnderTest') + '/tag-'
 
     beforeEach(() => {
         login.login(true)
@@ -27,7 +27,8 @@ describe('Tags E2E testing', () => {
         cy.screenshot(screenPath + 'scenario1_step' + step++).wait(1000)
         cy.visit(url + "#/tags").wait(2000)
         cy.screenshot(screenPath + 'scenario1_step' + step++).wait(1000)
-        post.goToPostsSection();
+        cy.get('.gh-nav-list-new a').first().click()
+        cy.wait(1000)
         cy.screenshot(screenPath + 'scenario1_step' + step++).wait(1000)
         post.clickNewPost();
         cy.screenshot(screenPath + 'scenario1_step' + step++).wait(1000)
