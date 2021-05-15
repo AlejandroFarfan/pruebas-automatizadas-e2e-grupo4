@@ -26,7 +26,7 @@ export class Login {
         })
         cy.wait(1000)
         if (!valid) {
-            cy.get('.main-error').contains('There is no user with that email address.')
+            cy.get('.main-error').contains('Access denied.')
             screenshot ? cy.screenshot(this.path + scenario + "4") : undefined
         }
         else {

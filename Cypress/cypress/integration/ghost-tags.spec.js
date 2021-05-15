@@ -8,7 +8,7 @@ describe('Tags E2E testing', () => {
     const tagPage = new TagPage()
     const post = new Post()
     const url = Cypress.config('ghostUrl')
-    const screenPath = Cypress.config('ghostUnderTest') + '/'
+    const screenPath = Cypress.config('ghostUnderTest') + '/tag-'
 
     beforeEach(() => {
         login.login(true)
