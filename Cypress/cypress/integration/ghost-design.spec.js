@@ -28,7 +28,7 @@ describe('Manage navigation links', () => {
     homePage.getMainMenuLastItem()
       .should('have.class', 'nav-enlace-nuevo')
       .should('contain', 'Enlace nuevo')
-    designPage.takeScreenshot(1, 4, { capture: 'viewport' })
+    designPage.takeScreenshot(1, 4)
   })
 
   it('Edits a link in main navigation', () => {
@@ -46,52 +46,62 @@ describe('Manage navigation links', () => {
     homePage.getMainMenuNItem(2)
       .should('have.class', 'nav-otro-enlace')
       .should('contain', 'Otro enlace')
+    designPage.takeScreenshot(2, 4)
   })
 
   it('Deletes a link in main navigation', () => {
+    designPage.takeScreenshot(3, 1)
+    designPage.selectMainLabelFields()
+    .then(($fields) => {
+      designPage.takeScreenshot(3, 2)
+      // count menu items
+      const fields = $fields.length
 
-      designPage.selectMainLabelFields()
-      .then(($fields) => {
-        // count menu items
-        const fields = $fields.length
+      designPage.deleteMainLastItem()
 
-        designPage.deleteMainLastItem()
+      designPage.saveChanges()
+      designPage.takeScreenshot(3, 3)
 
-        designPage.saveChanges()
+      homePage.navigate()
 
-        homePage.navigate()
-
-        homePage.getMainMenuAllItems()
-          .should(($menuItems) => {
-            expect($menuItems).to.have.length(fields - 1)
-          })
-      })
+      homePage.getMainMenuAllItems()
+        .should(($menuItems) => {
+          expect($menuItems).to.have.length(fields - 1)
+        })
+      designPage.takeScreenshot(3, 4)
+    })
   })
 
   it('Creates a link in second navigation', () => {
+    designPage.takeScreenshot(4, 1)
     designPage.typeSecondaryLabelField('Enlace prueba')
 
     designPage.typeSecondaryUrlField('https://www.twitter.com')
+    designPage.takeScreenshot(4, 2)
 
     designPage.saveChanges()
+    designPage.takeScreenshot(4, 3)
 
     homePage.navigate()
 
     homePage.getSecondaryMenuLastItem()
       .should('have.class', 'nav-enlace-prueba')
       .should('contain', 'Enlace prueba')
+    designPage.takeScreenshot(4, 4)
   })
 
   it('Deletes a link in second navigation', () => {
-
+    designPage.takeScreenshot(5, 1)
     designPage.selectSecondaryLabelFields()
       .then(($fields) => {
+        designPage.takeScreenshot(5, 2)
         // count menu items
         const fields = $fields.length
 
         designPage.deleteSecondaryLastItem()
 
         designPage.saveChanges()
+        designPage.takeScreenshot(5, 3)
 
         homePage.navigate()
 
@@ -99,6 +109,7 @@ describe('Manage navigation links', () => {
           .should(($menuItems) => {
             expect($menuItems).to.have.length(fields - 1)
           })
+          designPage.takeScreenshot(5, 4)
       })
   })
 })

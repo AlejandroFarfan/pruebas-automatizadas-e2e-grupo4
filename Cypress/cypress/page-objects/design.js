@@ -3,9 +3,9 @@ export class DesignPage {
   scenario = 'design-scenario-'
 
   // sc: Scenario, ss: Screenshot
-  takeScreenshot(scNumber, ssNumber, options = null) {
+  takeScreenshot(scNumber, ssNumber) {
     cy.wait(1000)
-    cy.screenshot(this.path + this.scenario + scNumber + '-' + ssNumber, options)
+    cy.screenshot(this.path + this.scenario + scNumber + '-' + ssNumber, { capture: 'viewport' })
   }
 
   navigate() {
