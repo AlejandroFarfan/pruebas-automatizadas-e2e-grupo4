@@ -83,3 +83,7 @@ Manejo de usuarios
 1. Invalid login: Intenga registrarse en el sistema con un nombre de usuario y contraseña aleatorio.
 2. Valid login: Se autentica en el sistema con los nombres de usuario y contraseñas del archivo de de configuración.
 3. update user name: Luego del login, se accede a la información de perfil de usuario y se actualiza el nombre del usuario
+
+
+## VTR con backstop
+ejecutar npm run vtr:backstop
