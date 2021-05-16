@@ -1,4 +1,4 @@
-# MSIW4103-2021-12 - Entregable Semana 5
+# MSIW4103-2021-12 - Entregable Semana 6
 
 Escenarios de pruebas automatizados por:
 
@@ -84,6 +84,10 @@ Manejo de usuarios
 2. Valid login: Se autentica en el sistema con los nombres de usuario y contraseñas del archivo de de configuración.
 3. update user name: Luego del login, se accede a la información de perfil de usuario y se actualiza el nombre del usuario
 
+## VTR con resemble
+1. Moverse a la carpeta resemble-report
+2. En la terminal ejecutar el comando node index.js
+3. Dirigirse a la carpeta results y abrir report.html
 
 ## VTR con backstop
 ejecutar npm run vtr:backstop
