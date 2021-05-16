@@ -9,7 +9,7 @@ const post = new Post()
 describe('Testing posts creation', () => {
     beforeEach(()=>{
         login.login(true)
-        post.goToPostsSection()
+        post.goToPostsSection(true)
     })
     it('Attempt to create post without contents', () => {
         post.createPostWithNoContents()
