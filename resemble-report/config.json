@@ -1,14 +1,15 @@
 {
     "scPaths": {
-        "ghost1": "../Kraken/ghostTests/screenshots/3.3.0/",
-        "ghost2": "../Kraken/ghostTests/screenshots/3.42.5/",
-        "cypress1": "../Cypress/screenshots/3.3.0/",
-        "cypress2": "../Cypress/screenshots/3.42.5/"
+        "ghost1": "../screenshots/3.3.0/",
+        "ghost2": "../screenshots/3.42.5/"
     },
     "scenarios": {
         "data": [
-            {"name": "login.invalid-login", "stepsCount": 4},
-            {"name": "post.edit-invalid", "stepsCount": 10}
+            {"fileName": "login.invalid-login", "stepsCount": 4, "name": "Invalid login"},
+            {"fileName": "update-user-name", "stepsCount": 4, "name": "Update user name"},
+            {"fileName": "post-scenario-1", "stepsCount": 3, "name": "Attempt to create post without contents"},
+            {"fileName": "post.edit-invalid", "stepsCount": 10, "name": "Edit post with invalid title length"},
+            {"fileName": "page-scenario3_step", "stepsCount": 9, "name": "Edit first page and publish it"}
         ]
     },
     "options":{

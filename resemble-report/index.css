@@ -35,7 +35,7 @@
     text-transform: uppercase;
     padding: 5px 0;
     padding-bottom: 15px;
-    font-size: 12px;
+    font-size: 14px;
 }
 .img2 {
     width: auto;
@@ -43,5 +43,12 @@
     max-height: 400px;
 }
 .imgfull{
-    width:100%
+    max-width: 100%;
+    max-height: 400px;
+}
+
+.scenario-title {
+    background-color: #343a40;
+    color: white;
+    padding: 10px;
 }

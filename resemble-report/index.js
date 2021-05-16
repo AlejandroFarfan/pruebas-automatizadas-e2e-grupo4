@@ -2,12 +2,12 @@ const playwright = require('playwright');
 const compareImages = require("resemblejs/compareImages")
 const config = require("./config.json");
 const fs = require('fs');
+const { report } = require('process');
 
 const { scPaths, scenarios, options } = config;
 
 async function executeTest(){
   let resultInfo = {};
-  let steps = {};
   let datetime = new Date().toISOString().replace(/:/g,".");
   for(s in scenarios.data){
     //Launch the current browser context
@@ -15,10 +15,12 @@ async function executeTest(){
       fs.mkdirSync(`./results/${datetime}/compare`, { recursive: true });
     }
 
+    let steps = {};
     for (let i = 1; i <= scenarios.data[s].stepsCount; i++) {
+      
       let data = await compareImages(
-        fs.readFileSync(`${scPaths.ghost1}${scenarios.data[s].name}-${i}.png`),
-        fs.readFileSync(`${scPaths.ghost2}${scenarios.data[s].name}-${i}.png`),
+        fs.readFileSync(`${scPaths.ghost1}${scenarios.data[s].fileName}-${i}.png`),
+        fs.readFileSync(`${scPaths.ghost2}${scenarios.data[s].fileName}-${i}.png`),
         options
       );
       steps[`${scenarios.data[s].name}-${i}`] = {
@@ -29,12 +31,13 @@ async function executeTest(){
           diffBounds: data.diffBounds,
           analysisTime: data.analysisTime
       }
-      fs.writeFileSync(`./results/${datetime}/compare/${scenarios.data[s].name}-${i}.png`, data.getBuffer());
+      fs.writeFileSync(`./results/${datetime}/compare/${scenarios.data[s].fileName}-${i}.png`, data.getBuffer());
     }
     resultInfo[scenarios.data[s].name] = steps;
   }
 
     fs.writeFileSync(`./results/${datetime}/report.html`, createReport(datetime, resultInfo));
+    fs.writeFileSync(`./results/${datetime}/report.json`, JSON.stringify(resultInfo, null, 2));
     fs.copyFileSync('./index.css', `./results/${datetime}/index.css`);
 
     console.log('------------------------------------------------------------------------------------')
@@ -43,11 +46,11 @@ async function executeTest(){
 }
 (async ()=>console.log(await executeTest()))();
 
-function getScenarios(name, steps, info){
+function getScenarios(name, fileName, steps, info){
   let scenarioHeader = 
   `<div class="scenario" id="test0">
     <div class=" btitle">
-      <h2>Scenario: ${name}</h2>
+      <h2 class="scenario-title">Scenario: ${name}</h2>
     </div>`
 
   let body = ''
@@ -60,17 +63,17 @@ function getScenarios(name, steps, info){
     <div class="imgline">
       <div class="imgcontainer">
         <span class="imgname">v 3.3.0</span>
-        <img class="img2" src="../../${scPaths.ghost1}${name}-${i}.png" id="refImage" label="Reference">
+        <img class="img2" src="../../${scPaths.ghost1}${fileName}-${i}.png" id="refImage" label="Reference">
       </div>
       <div class="imgcontainer">
         <span class="imgname">v 3.42.5</span>
-        <img class="img2" src="../../${scPaths.ghost2}${name}-${i}.png" id="testImage" label="Test">
+        <img class="img2" src="../../${scPaths.ghost2}${fileName}-${i}.png" id="testImage" label="Test">
       </div>
     </div>
     <div class="imgline">
       <div class="imgcontainer">
         <span class="imgname">Diff</span>
-        <img class="imgfull" src="./compare/${name}-${i}.png" id="diffImage" label="Diff">
+        <img class="img2" src="./compare/${fileName}-${i}.png" id="diffImage" label="Diff">
       </div>
     </div>`
   }
@@ -88,7 +91,7 @@ function createReport(datetime, resInfo){
             <h1>Report for Ghost's versions 3.42.5 vs 3.3.0</h1>
             <p>Executed: ${datetime}</p>
             <div id="visualizer">
-                ${scenarios.data.map(x=> getScenarios(x.name, x.stepsCount, resInfo[x.name]))}
+                ${scenarios.data.map(x=> getScenarios(x.name, x.fileName, x.stepsCount, resInfo[x.name]))}
             </div>
         </body>
     </html>`
