@@ -82,12 +82,19 @@ Administrar enlaces de navegación
 Manejo de usuarios
 1. Invalid login: Intenga registrarse en el sistema con un nombre de usuario y contraseña aleatorio.
 2. Valid login: Se autentica en el sistema con los nombres de usuario y contraseñas del archivo de de configuración.
-3. update user name: Luego del login, se accede a la información de perfil de usuario y se actualiza el nombre del usuario
+3. Update user name: Luego del login, se accede a la información de perfil de usuario y se actualiza el nombre del usuario
 
-## VTR con resemble
+## Escenarios para VRT
+1. Invalid login: kraken-resemble
+2. Update user name: cypress-resemble
+3. Attempt to create post without contents: cypress-resemble
+4. Edit post with invalid title length: kraken-resemble
+5. Edit first page and publish it: cypress-resemble
+
+## VRT con resemble
 1. Moverse a la carpeta resemble-report
 2. En la terminal ejecutar el comando node index.js
 3. Dirigirse a la carpeta results y abrir report.html
 
-## VTR con backstop
+## VRT con backstop
 ejecutar npm run vtr:backstop
