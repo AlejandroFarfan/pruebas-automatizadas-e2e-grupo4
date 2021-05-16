@@ -87,9 +87,12 @@ Manejo de usuarios
 ## Escenarios para VRT
 1. Invalid login: kraken-resemble
 2. Update user name: cypress-resemble
-3. Attempt to create post without contents: cypress-resemble
-4. Edit post with invalid title length: kraken-resemble
-5. Edit first page and publish it: cypress-resemble
+3. Creates a link in main navigation: cypress-resemble
+4. Creates a link in secondary navigation: cypress-resemble
+5. Attempt to create post without contents: cypress-resemble
+6. Edit post with invalid title length: kraken-resemble
+7. Edit first page and publish it: cypress-resemble
+8. Edit first page and publish it: kraken-resemble
 
 ## VRT con resemble
 1. Moverse a la carpeta resemble-report
