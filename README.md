@@ -88,8 +88,8 @@ Manejo de usuarios
 ## Escenarios para VRT
 1. Invalid login: kraken-resemble
 2. Update user name: cypress-resemble
-3. Creates a link in main navigation: cypress-resemble
-4. Creates a link in secondary navigation: cypress-resemble
+3. Creates a link in main navigation: cypress-backstop
+4. Creates a link in secondary navigation: cypress-backstop
 5. Attempt to create post without contents: cypress-resemble
 6. Edit post with invalid title length: kraken-resemble
 7. Edit first page and publish it: cypress-resemble
