@@ -8,8 +8,7 @@ Feature: Attempt to create page without content
       When I enter "<ADMIN_PASSWORD>" into input field having id "ember10"
       When I click on element having css selector "button.login"
       When I navigate to page "<GHOST_PAGE_SECTION>"
-
-      Then I click on element having css selector "a[title='Edit this post']"
+      Then I click on element having css selector "a[title='Edit this page']"
       Then I clear post input field having css selector "textarea[placeholder='Page Title']"
       Then I enter "Vitae id modi nesciunt accusantium vero qui eius nemo" into input field having css selector "textarea[placeholder='Page Title']"
       Then I enter "Labore et laudantium sequi accusantium numquam eum aut modi aut. Alias a vitae temporibus est qui voluptas cumque fuga. Dolor rerum laborum aperiam ut reiciendis ut veritatis qui eligendi." into input field having css selector ".koenig-editor__editor"

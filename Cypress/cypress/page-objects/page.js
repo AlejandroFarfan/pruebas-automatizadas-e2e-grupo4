@@ -30,9 +30,10 @@ export class Page {
         this.clickNewPage()
         cy.screenshot(this.screenPath+'scenario1_step'+step++).wait(1000)
         cy.get(this.pageTitle).click()
-        cy.screenshot(this.screenPath+'scenario1_step'+step++).wait(1000)
+        cy.screenshot(this.screenPath+'scenario1_step'+step++)
         cy.get(this.backToPageList).first().click()
-        cy.screenshot(this.screenPath+'scenario1_step'+step++).wait(1000)
+        cy.wait(1000)
+        cy.screenshot(this.screenPath+'scenario1_step'+step++)
         cy.get(this.pageEntry).first().should('contain.text', '(Untitled)')
         cy.screenshot(this.screenPath+'scenario1_step'+step++).wait(1000)
 
@@ -46,14 +47,15 @@ export class Page {
         cy.get(this.pageTitle).click()
         cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
         cy.get(this.backToPageList).first().click()
-        cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
+        cy.wait(1000)
+        cy.screenshot(this.screenPath+'scenario2_step'+step++)
         cy.get(this.pageEntry).first().should("contain.text", '(Untitled)')
         cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
 
         cy.visit(this.publicSite)
-        cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
+        cy.screenshot(this.screenPath+'scenario2_step'+step++, { capture: 'viewport' }).wait(1000)
         cy.get(this.postCardTitle).first().should('not.contain.text', '(Untitled)')
-        cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
+        cy.screenshot(this.screenPath+'scenario2_step'+step++, { capture: 'viewport' }).wait(1000)
 
     }
 
