@@ -1,4 +1,5 @@
 # MSIW4103-2021-12 - Entregable Semana 6
+## Pruebas de Ghost 3.42.5 con capturas de pantalla respectivas para cada paso de los escenarios
 
 Escenarios de pruebas automatizados por:
 
@@ -22,7 +23,7 @@ Escenarios de pruebas automatizados por:
 * incluir en el path la ubicacion del platform tools que esta dentro de la carpeta del SDK de Android
 * El driver Chromedriver instalado en su máquina. (https://chromedriver.chromium.org/downloads).
 * node 12.20.1
-* ghost version 3.3.0 (el usuario y contraseña principal deben estar establecidos)
+* Ghost version 3.42.5 (Se debe contar con un usuario **user@email.com** y la clave para este usuario debe ser **abc123xyz456**)
 
 ### Para las pruebas con cypress se debe: 
 
