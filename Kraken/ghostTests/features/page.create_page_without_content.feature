@@ -1,3 +1,4 @@
+@page.create-without-content
 Feature: Attempt to create page without content
 
   @user1 @web

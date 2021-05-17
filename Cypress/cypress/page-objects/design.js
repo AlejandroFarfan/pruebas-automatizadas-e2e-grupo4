@@ -1,4 +1,13 @@
 export class DesignPage {
+  path = Cypress.config('ghostUnderTest') + '/'
+  scenario = 'design-scenario-'
+
+  // sc: Scenario, ss: Screenshot
+  takeScreenshot(scNumber, ssNumber) {
+    cy.wait(1000)
+    cy.screenshot(this.path + this.scenario + scNumber + '-' + ssNumber, { capture: 'viewport' })
+  }
+
   navigate() {
     cy.get('a[href*="design"]')
       .click()

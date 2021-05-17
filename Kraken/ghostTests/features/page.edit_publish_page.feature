@@ -1,3 +1,4 @@
+@page.edit-publish-page
 Feature: Edit first page and publish it
 
   @user1 @web

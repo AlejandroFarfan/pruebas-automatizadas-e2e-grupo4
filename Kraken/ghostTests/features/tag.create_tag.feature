@@ -1,3 +1,4 @@
+@tag.create-tag
 Feature: New Tag should be visible on post settings
 
   @user1 @web

@@ -1,3 +1,4 @@
+@post.create-without-content
 Feature: Attempt to create post without contents
 
   @user1 @web

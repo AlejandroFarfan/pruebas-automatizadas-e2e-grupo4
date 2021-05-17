@@ -1,7 +1,8 @@
+@post.edit-valid
 Feature: Edit first post and publish it
 
   @user1 @web
-  Scenario: As an admin user I can update and publish a posts
+  Scenario: As an admin user I can update and publish a post
     Given I navigate to page "<GHOST_URL_SIGIN>"
       When I enter "<ADMIN_USER>" into input field having id "ember8"
       When I enter "<ADMIN_PASSWORD>" into input field having id "ember10"
