@@ -100,8 +100,8 @@ if ENV["ADB_DEVICE_ARG"].nil?
   AfterStep do |_scenario|
     if $scenario_name[0..4] == "login" || $step_index > 3
       Dir.mkdir("./screenshots") unless File.exist?("./screenshots")
-      Dir.mkdir("./screenshots/3.3.0") unless File.exist?("./screenshots/3.3.0")
-      path = "./screenshots/3.3.0/#{$scenario_name}-#{$step}.png"
+      Dir.mkdir("./screenshots/3.42.5") unless File.exist?("./screenshots/3.42.5")
+      path = "./screenshots/3.42.5/#{$scenario_name}-#{$step}.png"
       $step += 1
       @driver.save_screenshot(path)
       embed(path, 'image/png', File.basename(path))

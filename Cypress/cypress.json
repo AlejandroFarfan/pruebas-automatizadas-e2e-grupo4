@@ -3,5 +3,5 @@
     "ghostAdminUser": "user@email.com",
 	"ghostAdminPwd": "abc123xyz456",
     "chromeWebSecurity": false,
-    "ghostUnderTest": "3.3.0"
+    "ghostUnderTest": "3.42.5"
 }

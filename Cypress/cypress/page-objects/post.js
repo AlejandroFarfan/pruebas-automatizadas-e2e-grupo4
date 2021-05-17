@@ -15,6 +15,7 @@ export class Post {
     goToPostsSection(takeShot = false) {
         cy.get('.gh-nav-list-new a').first().click()
         cy.wait(1000)
+        cy.screenshot(this.path + this.scenario + this.sNumber + '-1')
         takeShot ? cy.screenshot(this.path + this.scenario + this.sNumber + '-1') : undefined
     }
 
