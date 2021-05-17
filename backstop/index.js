@@ -1,39 +1,36 @@
-const fs = require('fs');
 const backstop = require('backstopjs')
+const config = require("./config.json");
 
-let resource = './Cypress/screenshots/';
-let resourceFiles = fs.readdirSync(resource);
+var backstopScenarios = [];
+const { scPaths, scenarios } = config;
 
-let versionBase = resourceFiles[0];
-let versionToCompare = resourceFiles[1];
-let scenarios = [];
-console.log(versionBase, versionToCompare);
+scenarios.forEach(scenario => {
+    for (let i = 0; i < scenario.stepsCount; i++) {
+        backstopScenarios.push({
+            referenceUrl: `/${scPaths.ghost1}/${scenario.fileName}${i}.png`,
+            url : `/${scPaths.ghost2}/${scenario.fileName}${i}.png`,
+            label: scenario.name+i
+        })
+    }
+})
 
-fs.readdir(resource + versionBase, (err, screenshots) => {
+backstop('reference', { config: getOption(backstopScenarios) }).then(() => {
+        backstop('test', { config: getOption(backstopScenarios) });
+    })
 
-    screenshots.forEach(screenshot => {
-        let referenceUrl = `/${resource + versionBase}/${screenshot}`;
-        let url = `/${resource + versionToCompare}/${screenshot}`;
-        let label = screenshot
-        scenarios.push({ label, url, referenceUrl })
-    });
-});
-
-let config = {
-    id: "backstop_default",
-    viewports: [{ label: "pc", width: 1920, height: 1080 }],
-    scenarios: scenarios,
-    paths: {
-        bitmaps_reference: "backstop/result/bitmaps_reference",
-        bitmaps_test: "backstop/result/bitmaps_test",
-        engine_scripts: "backstop/result/engine_scripts",
-        html_report: "backstop/result/html_report",
-        ci_report: "backstop/result/ci_report"
-    },
-    engine: "puppeteer",
-    debug: true
-};
-
-backstop('reference', { config }).then(() => {
-    backstop('test', { config });
-});
+function getOption(backstopScenarios) {
+    return {
+        id: "backstop_default",
+        viewports: [{ label: "pc", width: 1920, height: 1080 }],
+        scenarios: backstopScenarios,
+        paths: {
+            bitmaps_reference: "backstop/backstop_data/bitmaps_reference",
+            bitmaps_test: "backstop/backstop_data/bitmaps_test",
+            engine_scripts: "backstop/backstop_data/engine_scripts",
+            html_report: "backstop/backstop_data/html_report",
+            ci_report: "backstop/backstop_data/ci_report"
+        },
+        engine: "puppeteer",
+        debug: true
+    };
+}

@@ -90,6 +90,8 @@ Manejo de usuarios
 3. Attempt to create post without contents: cypress-resemble
 4. Edit post with invalid title length: kraken-resemble
 5. Edit first page and publish it: cypress-resemble
+6. New Tag should be visible on post settings: cypress-backstop
+7. internal tags should start by #: cypress-backstop
 
 ## VRT con resemble
 1. Moverse a la carpeta resemble-report
@@ -97,4 +99,4 @@ Manejo de usuarios
 3. Dirigirse a la carpeta results y abrir report.html
 
 ## VRT con backstop
-ejecutar npm run vtr:backstop
+1. ejecutar npm run vtr:backstop desde la raiz
