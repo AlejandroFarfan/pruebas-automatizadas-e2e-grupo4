@@ -104,3 +104,11 @@ Manejo de usuarios
 
 ## VRT con backstop
 1. ejecutar npm run vtr:backstop desde la raiz
+
+---
+
+### Changelog (Tags/Releases)
+Tenemos los siguientes tags o releases para identificar fácilmente los distintos entregables, y que el tutor o persona que califique, se ubique mejor:
+- **Versión actual**: Semana 6 - 40 escenarios funcionales para Ghost 3.42.5 y toma de screenshots. Generación de reportes con ResembleJS y BackstopJS
+- [Semana 6 - 40 escenarios funcionales para Ghost 3.3.0 y toma de screenshots en cada paso.](https://github.com/AlejandroFarfan/pruebas-automatizadas-e2e-grupo4/tree/semana-6-3.3.0)
+- [Semana 5 - 40 escenarios funcionales para Ghost 3.3.0](https://github.com/AlejandroFarfan/pruebas-automatizadas-e2e-grupo4/tree/semana-5-3.3.0)
