@@ -15,6 +15,7 @@
             {"fileName": "page.edit-publish-page", "stepsCount": 9, "name": "Edit first page and publish it-Kraken"}
         ]
     },
+    "misMatchThreshold": 2,
     "options":{
         "output": {
             "errorColor": {

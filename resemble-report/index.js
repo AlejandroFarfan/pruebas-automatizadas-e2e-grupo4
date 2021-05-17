@@ -4,7 +4,7 @@ const config = require("./config.json");
 const fs = require('fs');
 const { report } = require('process');
 
-const { scPaths, scenarios, options } = config;
+const { scPaths, scenarios, options, misMatchThreshold } = config;
 
 async function executeTest(){
   let resultInfo = {};
@@ -28,6 +28,8 @@ async function executeTest(){
           dimensionDifference: data.dimensionDifference,
           rawMisMatchPercentage: data.rawMisMatchPercentage,
           misMatchPercentage: data.misMatchPercentage,
+          misMatchThreshold: misMatchThreshold,
+          failedTest: data.misMatchPercentage >= misMatchThreshold ? true : false,
           diffBounds: data.diffBounds,
           analysisTime: data.analysisTime
       }
@@ -54,10 +56,9 @@ function getScenarios(name, fileName, steps, info){
     </div>`
 
   let body = ''
-
   for (let i = 1; i <= steps; i++) {
     body += `<hr><div>
-      <h3>Step ${i}</h3>
+      <h3>Step ${i}</h3>${info[`${name}-${i}`].failedTest ? '<span class="red">Failed test</span>': '<span class="green">Passed test</span>'}
       <p>Data: ${JSON.stringify(info[`${name}-${i}`])}</p>
     <div>
     <div class="imgline">
