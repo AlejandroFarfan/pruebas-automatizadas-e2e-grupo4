@@ -96,4 +96,15 @@ describe('Manage Invites to Staff', () => {
     staffPage.getSendInvitationButton()
       .contains('Retry')
   })
+
+  it('Creates an invite with long -valid- email (Positive)', () => {
+    staffPage.typeEmailField(staticData[0].long_email)
+
+    staffPage.clickSendInvitation()
+
+    staffPage.getInvitedUsersContainer()
+      .contains('Invitation sent:')
+
+    staffPage.deleteInvitations()
+  })
 })

@@ -57,7 +57,7 @@ describe('Manage Members', () => {
     memberCreated = false
   })
 
-  it('Creates a member with valid data (Positive)', () => {
+  it('Creates a member with a typical name and email (Positive)', () => {
     membersPage.typeNameMemberField(faker.name.findName())
 
     membersPage.typeEmailMemberField(faker.internet.email())
@@ -139,6 +139,29 @@ describe('Manage Members', () => {
     membersPage.typeNameMemberField(dynamicData.text)
 
     membersPage.typeEmailMemberField(dynamicData.text)
+
+    membersPage.saveMemberInfo()
+
+    membersPage.getMembersSaveButton()
+      .contains('Retry')
+  })
+
+  it('Creates a member with a short text in name and a long -valid- email (Positive)', () => {
+    membersPage.typeNameMemberField(dynamicData.text)
+
+    membersPage.typeEmailMemberField(staticData[0].long_email)
+
+    membersPage.saveMemberInfo()
+
+    membersPage.getMemberDetailsSection()
+      .contains('– Created on')
+      .then( response => memberCreated = true)
+  })
+
+  it('Creates a member with a very long name and a valid email (Negative)', () => {
+    membersPage.typeNameMemberField(dynamicData.very_long_text)
+
+    membersPage.typeEmailMemberField(staticData[0].email)
 
     membersPage.saveMemberInfo()
 
