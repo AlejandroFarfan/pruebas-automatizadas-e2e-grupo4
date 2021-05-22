@@ -3,7 +3,7 @@ import { Login } from "../page-objects/login"
 import { DataReader } from "../external-data/dataReader"
 import * as faker from "faker"
 
-describe('Manage Users/Members/Site Title', () => {
+describe('Manage Members', () => {
   const login = new Login()
   const membersPage = new MembersPage()
   const dataReader = new DataReader()
@@ -46,6 +46,8 @@ describe('Manage Users/Members/Site Title', () => {
 
   beforeEach(() => {
     login.login(true)
+
+    membersPage.navigateToNewMember()
   })
 
   afterEach(() => {
@@ -56,8 +58,6 @@ describe('Manage Users/Members/Site Title', () => {
   })
 
   it('Creates a member with valid data (Positive)', () => {
-    membersPage.navigateToNewMember()
-
     membersPage.typeNameMemberField(faker.name.findName())
 
     membersPage.typeEmailMemberField(faker.internet.email())
@@ -70,8 +70,6 @@ describe('Manage Users/Members/Site Title', () => {
   })
 
   it('Creates a member with spaces in both fields (Negative)', () => {
-    membersPage.navigateToNewMember()
-
     membersPage.typeNameMemberField(staticData[0].spaces)
 
     membersPage.typeEmailMemberField(staticData[0].spaces)
@@ -83,8 +81,6 @@ describe('Manage Users/Members/Site Title', () => {
   })
 
   it('Creates a member with dangerous data in both fields (Negative)', () => {
-    membersPage.navigateToNewMember()
-
     membersPage.typeNameMemberField(dynamicData.spec_char)
 
     membersPage.typeEmailMemberField(dynamicData.spec_char)
@@ -96,8 +92,6 @@ describe('Manage Users/Members/Site Title', () => {
   })
 
   it('Creates a member with code in both fields (Negative)', () => {
-    membersPage.navigateToNewMember()
-
     membersPage.typeNameMemberField(dynamicData.code)
 
     membersPage.typeEmailMemberField(dynamicData.code)
@@ -109,8 +103,6 @@ describe('Manage Users/Members/Site Title', () => {
   })
 
   it('Creates a member with very long text in both fields (Negative)', () => {
-    membersPage.navigateToNewMember()
-
     membersPage.typeNameMemberField(dynamicData.very_long_text)
 
     membersPage.typeEmailMemberField(dynamicData.very_long_text)
@@ -122,8 +114,6 @@ describe('Manage Users/Members/Site Title', () => {
   })
 
   it('Creates a member with text in name and spaces in email (Negative)', () => {
-    membersPage.navigateToNewMember()
-
     membersPage.typeNameMemberField(dynamicData.text)
 
     membersPage.typeEmailMemberField(dynamicData.spaces)
@@ -135,8 +125,6 @@ describe('Manage Users/Members/Site Title', () => {
   })
 
   it('Creates a member with text in name and very long email (Negative)', () => {
-    membersPage.navigateToNewMember()
-
     membersPage.typeNameMemberField(dynamicData.text)
 
     membersPage.typeEmailMemberField(dynamicData.very_long_email)
@@ -148,8 +136,6 @@ describe('Manage Users/Members/Site Title', () => {
   })
 
   it('Creates a member with short text in both fields (Negative)', () => {
-    membersPage.navigateToNewMember()
-
     membersPage.typeNameMemberField(dynamicData.text)
 
     membersPage.typeEmailMemberField(dynamicData.text)
