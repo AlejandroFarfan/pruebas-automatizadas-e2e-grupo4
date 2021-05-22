@@ -14,15 +14,17 @@ describe('Manage navigation links', () => {
   let secMenuItems;
 
   before(() => {
-    dataReader.getDynamicData()
-    .then( response => {
-      dynamicData = response
-    })
-
     cy.readFile('cypress/external-data/schema_design_week7.json')
-    .then( response => {
-      staticData = response
-    })
+      .then( response => {
+        staticData = response
+        dataReader.getDynamicData()
+          .then( response => {
+            dynamicData = response
+          })
+          .catch( error => {
+            dynamicData = staticData[0]
+          })
+      })
 
     homePage.navigate()
 
@@ -112,7 +114,7 @@ describe('Manage navigation links', () => {
     })
   })
 
-  it('Creates a link in main navigation with dangerous data in both fields (Positive?)', () => {
+  it('Creates a link in main navigation with dangerous data in both fields (Positive/Negative)', () => {
     designPage.selectMainLabelFields()
     .then(($fields) => {
       const fieldsCount = $fields.length
@@ -214,7 +216,7 @@ describe('Manage navigation links', () => {
     })
   })
 
-  it('Creates a link in secondary navigation with dangerous data in both fields (Positive?)', () => {
+  it('Creates a link in secondary navigation with dangerous data in both fields (Positive/Negative)', () => {
     designPage.typeSecondaryLabelField(dynamicData.spec_char)
 
     designPage.typeSecondaryUrlField(dynamicData.spec_char)

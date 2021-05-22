@@ -4,7 +4,7 @@ export class DataReader {
   getDynamicData() {
     let mockarooApiKey = '1fdbd0e0';
     let url = `https://cors-anywhere.herokuapp.com/http://my.api.mockaroo.com/ghost3425-design-users.json?key=${mockarooApiKey}`;
-    return new Promise((resolve, eject) => {
+    return new Promise((resolve, reject) => {
       $.ajax( {
         url: url,
         responseType:'application/json',
@@ -14,7 +14,8 @@ export class DataReader {
         success: function(data) {
           resolve(data);
         },
-        error: function(xhr, status, error) {
+        error: function(req, status, error) {
+          reject(req);
         }
       });
     })
