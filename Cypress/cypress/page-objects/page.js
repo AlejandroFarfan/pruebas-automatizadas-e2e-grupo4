@@ -25,85 +25,64 @@ export class Page {
     }
 
     createPageWithNoContent() {
-        var step =0
-        cy.screenshot(this.screenPath+'scenario1_step'+step++).wait(1000)
         this.clickNewPage()
-        cy.screenshot(this.screenPath+'scenario1_step'+step++).wait(1000)
         cy.get(this.pageTitle).click()
-        cy.screenshot(this.screenPath+'scenario1_step'+step++)
         cy.get(this.backToPageList).first().click()
-        cy.wait(1000)
-        cy.screenshot(this.screenPath+'scenario1_step'+step++)
         cy.get(this.pageEntry).first().should('contain.text', '(Untitled)')
-        cy.screenshot(this.screenPath+'scenario1_step'+step++).wait(1000)
 
     }
 
-    createPageUnpublished() {
-        var step =0
-        cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
-        this.clickNewPage()
-        cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
-        cy.get(this.pageTitle).click()
-        cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
-        cy.get(this.backToPageList).first().click()
-        cy.wait(1000)
-        cy.screenshot(this.screenPath+'scenario2_step'+step++)
-        cy.get(this.pageEntry).first().should("contain.text", '(Untitled)')
-        cy.screenshot(this.screenPath+'scenario2_step'+step++).wait(1000)
-
-        cy.visit(this.publicSite)
-        cy.screenshot(this.screenPath+'scenario2_step'+step++, { capture: 'viewport' }).wait(1000)
-        cy.get(this.postCardTitle).first().should('not.contain.text', '(Untitled)')
-        cy.screenshot(this.screenPath+'scenario2_step'+step++, { capture: 'viewport' }).wait(1000)
-
-    }
-
-    editFirstPage() {
-        let title = faker.lorem.sentence(10)
-        var step =0
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
-        this.getAndVisitUrl('a[title="Edit this post"]')
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
-        cy.get('textarea[placeholder="Page Title"]').clear().type(title)
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
-        cy.get('.koenig-editor__editor').type(faker.lorem.paragraph() + '{enter}').type(faker.lorem.paragraph())
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
+    editFirstPageWithError(title, paragraph) {
+        this.editFirstPage(title, paragraph);
         cy.get('div.gh-publishmenu.ember-view').first().click()
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
         cy.get('.gh-publishmenu-button').first().click()
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
-
-        cy.get('.gh-notifications').should('be.visible')
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
+        cy.get('aside.gh-alerts.ember-view').should('be.visible').should('contain.text', 'Saving failed: Title cannot be longer than 255 characters.')
         cy.get(this.backToPageList).first().click()
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
+        cy.get('.gh-btn-red').contains('Leave') .click()
+
+    }
+
+    editFirstPageOk(title, paragraph) {
+        this.editFirstPage(title, paragraph);
+        cy.get('div.gh-publishmenu.ember-view').first().click()
+        cy.get('.gh-publishmenu-button').first().click()
+        cy.get('.gh-notifications').should('be.visible')
+        cy.get(this.backToPageList).first().click()
         cy.get('.gh-list').should('contain.text', title)
-        cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
+    }
+
+
+    editFirstPage(title, paragraph) {
+        this.getAndVisitUrl('a[title="Edit this page"]')
+        cy.get('textarea[placeholder="Page Title"]').clear().type(title)
+        cy.get('.koenig-editor__editor').type(paragraph)
 
     }
 
     deletePublishedPage(){
-        var step =0
-        cy.screenshot(this.screenPath+'scenario4_step'+step++).wait(1000)
-
         cy.get('.gh-list-row')
-        .then(($elements) => {
-            const pages = $elements.length
-            this.getAndVisitUrl('a[title="Edit this post"]')
-            cy.screenshot(this.screenPath+'scenario4_step'+step++).wait(1000)
-            cy.get('.post-settings').click()
-            cy.screenshot(this.screenPath+'scenario4_step'+step++).wait(1000)
-            cy.wait(1000)
-            cy.get('form > .gh-btn > span').click().wait(1000)
-            cy.screenshot(this.screenPath+'scenario4_step'+step++).wait(1000)
-            cy.get('.gh-btn-red').first().click()
-            this.goToPagesSection()
-            cy.screenshot(this.screenPath+'scenario4_step'+step++).wait(1000)
-            cy.get('.gh-list-row').should(($menuItems) => {
-                expect($menuItems).to.have.length(pages-1)
+            .then(($elements) => {
+                const pages = $elements.length
+                this.getAndVisitUrl('a[title="Edit this page"]')
+                cy.get('.post-settings').click()
+                cy.get('form > .gh-btn > span').click().wait(1000)
+                cy.get('.gh-btn-red').first().click()
+                this.goToPagesSection()
+                cy.get('.gh-list-row').should(($menuItems) => {
+                    expect($menuItems).to.have.length(pages-1)
+                })
             })
-        })
+    }
 
+    addEditPage(title, paragraph){
+        this.createPageWithNoContent();
+        this.editFirstPageOk(title, paragraph);
+        this.deletePublishedPage();
+    }
+
+    addEditPageError(title, paragraph) {
+        this.createPageWithNoContent();
+        this.editFirstPageWithError(title, paragraph);
+        this.deletePublishedPage();
     }
 }
