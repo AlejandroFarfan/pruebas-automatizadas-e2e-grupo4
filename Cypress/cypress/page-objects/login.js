@@ -7,6 +7,7 @@ export class Login {
     password = Cypress.config('ghostAdminPwd')
 
     login(valid) {
+        cy.clearCookie('ghost-admin-api-session')
         cy.visit(this.url + "#/signin")
         cy.wait(1000)
         cy.get('form').within(() => {
