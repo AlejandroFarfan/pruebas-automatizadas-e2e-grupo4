@@ -26,6 +26,9 @@ describe('Manage Members', () => {
       })
 
     login.login(true)
+    Cypress.Cookies.defaults({
+      preserve: 'ghost-admin-api-session',
+    })
 
     membersPage.navigateToLabs()
 
@@ -40,13 +43,9 @@ describe('Manage Members', () => {
         membersPage.enableMembersSection()
       }
     })
-
-    membersPage.logout()
   })
 
   beforeEach(() => {
-    login.login(true)
-
     membersPage.navigateToNewMember()
   })
 
@@ -55,6 +54,11 @@ describe('Manage Members', () => {
       membersPage.deleteMember()
     }
     memberCreated = false
+  })
+
+  after(() => {
+    cy.clearCookie('ghost-admin-api-session')
+    cy.getCookies().should('be.empty')
   })
 
   it('Creates a member with a typical name and email (Positive)', () => {

@@ -36,11 +36,14 @@ describe('Manage navigation links', () => {
         secMenuItems = menu[0].children[0].children.length
       }
     })
+
+    login.login(true)
+    Cypress.Cookies.defaults({
+      preserve: 'ghost-admin-api-session',
+    })
   })
 
   beforeEach(() => {
-    login.login(true)
-
     designPage.navigate()
   })
 
@@ -73,7 +76,11 @@ describe('Manage navigation links', () => {
         designPage.saveChanges()
       }
     })
+  })
 
+  after(() => {
+    cy.clearCookie('ghost-admin-api-session')
+    cy.getCookies().should('be.empty')
   })
 
   it('Creates a link in main navigation with valid data (Positive)', () => {

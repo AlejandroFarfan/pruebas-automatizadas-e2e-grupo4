@@ -22,14 +22,22 @@ describe('Manage Invites to Staff', () => {
             dynamicData = staticData[0]
           })
       })
+
+    login.login(true)
+    Cypress.Cookies.defaults({
+      preserve: 'ghost-admin-api-session',
+    })
   })
 
   beforeEach(() => {
-    login.login(true)
-
     staffPage.navigateToStaff()
 
     staffPage.showInvitePopup()
+  })
+
+  after(() => {
+    cy.clearCookie('ghost-admin-api-session')
+    cy.getCookies().should('be.empty')
   })
 
   it('Creates an invite with a valid email (Positive)', () => {

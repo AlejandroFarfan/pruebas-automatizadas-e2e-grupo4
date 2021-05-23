@@ -63,7 +63,7 @@ export class Page {
         let title = faker.lorem.sentence(10)
         var step =0
         cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
-        this.getAndVisitUrl('a[title="Edit this post"]')
+        this.getAndVisitUrl('a[title="Edit this page"]')
         cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
         cy.get('textarea[placeholder="Page Title"]').clear().type(title)
         cy.screenshot(this.screenPath+'scenario3_step'+step++).wait(1000)
@@ -90,7 +90,7 @@ export class Page {
         cy.get('.gh-list-row')
         .then(($elements) => {
             const pages = $elements.length
-            this.getAndVisitUrl('a[title="Edit this post"]')
+            this.getAndVisitUrl('a[title="Edit this page"]')
             cy.screenshot(this.screenPath+'scenario4_step'+step++).wait(1000)
             cy.get('.post-settings').click()
             cy.screenshot(this.screenPath+'scenario4_step'+step++).wait(1000)
