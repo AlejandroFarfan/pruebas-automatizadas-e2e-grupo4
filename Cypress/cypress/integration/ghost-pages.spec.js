@@ -2,29 +2,52 @@
 
 import { Login } from "../page-objects/login"
 import {Page} from "../page-objects/page";
+import * as faker from "faker";
 
 const login = new Login()
 const page = new Page()
 
-describe('Testing Pages creation', () => {
-    beforeEach(()=>{
-        login.login(true)
-        page.goToPagesSection()
-    })
-    it('Attempt to create page without content', () => {
-        page.createPageWithNoContent()
-    })
+var pageData = require('../external-data/pages-data.js')
 
-    it('Create and published page', () => {
-        page.createPageUnpublished()
-    })
+Object.keys(pageData).forEach(str => {
 
-    it('Edit first created page', () => {
-        page.editFirstPage()
-    })
+    pageData[str].forEach(data => {
+        if(str === 'apriori-positive' ||
+            str === 'random-positive') {
+            context('Pages positive', () => {
 
-    it('Delete publish page', () => {
-        page.deletePublishedPage()
-    })
+                beforeEach(() => {
+                    login.login(true)
+                    page.goToPagesSection()
+                })
+                it('Add and edit page', () => {
+                    page.addEditPage(
+                        (str === 'random-positive') ? data.title() : data.title,
+                        (str === 'random-positive') ? data.paragraph() : data.paragraph
+                    )
+                })
+            })
+        }else if(str === 'apriori-negative' ||
+            str === 'random-negative') {
+            context('Pages negative', () => {
 
+                beforeEach(()=>{
+                    login.login(true)
+                    page.goToPagesSection()
+                })
+                it('Add and edit page and check error', () => {
+                    page.addEditPageError(
+                        (str === 'random-negative') ? data.title() : data.title,
+                        (str === 'random-negative') ? data.paragraph() : data.paragraph
+                    )
+                })
+
+            })
+        }
+
+    })
 })
+
+
+
+
