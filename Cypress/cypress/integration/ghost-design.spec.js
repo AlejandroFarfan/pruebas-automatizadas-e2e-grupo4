@@ -1,115 +1,285 @@
 import { DesignPage } from "../page-objects/design"
 import { HomePage } from "../page-objects/home"
 import { Login } from "../page-objects/login"
+import { DataReader } from "../external-data/dataReader"
+import * as faker from "faker"
 
 describe('Manage navigation links', () => {
   const login = new Login()
   const designPage = new DesignPage()
   const homePage = new HomePage()
+  const dataReader = new DataReader()
+  let dynamicData;
+  let staticData;
+  let secMenuItems;
 
-  beforeEach(() => {
+  before(() => {
+    cy.readFile('cypress/external-data/schema_design_week7.json')
+      .then( response => {
+        staticData = response
+        dataReader.getDynamicData()
+          .then( response => {
+            dynamicData = response
+          })
+          .catch( error => {
+            dynamicData = staticData[0]
+          })
+      })
+
+    homePage.navigate()
+
+    homePage.getSecondaryMenu()
+    .then( menu => {
+      if (menu[0].children[0].tagName != 'UL') {
+        secMenuItems = 0
+      } else {
+        secMenuItems = menu[0].children[0].children.length
+      }
+    })
+
     login.login(true)
-
-    designPage.navigate()
-  })
-
-  it('Creates a link in main navigation', () => {
-    designPage.takeScreenshot(1, 1)
-    designPage.typeMainLabelField('Enlace nuevo')
-
-    designPage.typeMainUrlField('https://www.google.com')
-    designPage.takeScreenshot(1, 2)
-
-    designPage.saveChanges()
-    designPage.takeScreenshot(1, 3)
-
-    homePage.navigate()
-
-    homePage.getMainMenuLastItem()
-      .should('have.class', 'nav-enlace-nuevo')
-      .should('contain', 'Enlace nuevo')
-    designPage.takeScreenshot(1, 4)
-  })
-
-  it('Edits a link in main navigation', () => {
-    designPage.takeScreenshot(2, 1)
-    designPage.editMainLabelField(2, 'Otro enlace')
-
-    designPage.editMainUrlField(2, 'https://www.facebook.com')
-    designPage.takeScreenshot(2, 2)
-
-    designPage.saveChanges()
-    designPage.takeScreenshot(2, 3)
-
-    homePage.navigate()
-
-    homePage.getMainMenuNItem(2)
-      .should('have.class', 'nav-otro-enlace')
-      .should('contain', 'Otro enlace')
-    designPage.takeScreenshot(2, 4)
-  })
-
-  it('Deletes a link in main navigation', () => {
-    designPage.takeScreenshot(3, 1)
-    designPage.selectMainLabelFields()
-    .then(($fields) => {
-      designPage.takeScreenshot(3, 2)
-      // count menu items
-      const fields = $fields.length
-
-      designPage.deleteMainLastItem()
-
-      designPage.saveChanges()
-      designPage.takeScreenshot(3, 3)
-
-      homePage.navigate()
-
-      homePage.getMainMenuAllItems()
-        .should(($menuItems) => {
-          expect($menuItems).to.have.length(fields - 1)
-        })
-      designPage.takeScreenshot(3, 4)
+    Cypress.Cookies.defaults({
+      preserve: 'ghost-admin-api-session',
     })
   })
 
-  it('Creates a link in second navigation', () => {
-    designPage.takeScreenshot(4, 1)
-    designPage.typeSecondaryLabelField('Enlace prueba')
+  beforeEach(() => {
+    designPage.navigate()
+  })
 
-    designPage.typeSecondaryUrlField('https://www.twitter.com')
-    designPage.takeScreenshot(4, 2)
+  afterEach(() => {
+    designPage.navigate()
 
-    designPage.saveChanges()
-    designPage.takeScreenshot(4, 3)
+    designPage.selectMainLabelFields(false)
+    .then((fields) => {
+      if (fields.length > 4) {
+        designPage.deleteMainLastItem()
+
+        designPage.saveChanges()
+      }
+    })
 
     homePage.navigate()
 
-    homePage.getSecondaryMenuLastItem()
-      .should('have.class', 'nav-enlace-prueba')
-      .should('contain', 'Enlace prueba')
-    designPage.takeScreenshot(4, 4)
-  })
+    homePage.getSecondaryMenu()
+    .then( menu => {
+      let afterSecMenuItems = 0
+      if (menu[0].children[0].tagName == 'UL') {
+        afterSecMenuItems = menu[0].children[0].children.length
+      }
 
-  it('Deletes a link in second navigation', () => {
-    designPage.takeScreenshot(5, 1)
-    designPage.selectSecondaryLabelFields()
-      .then(($fields) => {
-        designPage.takeScreenshot(5, 2)
-        // count menu items
-        const fields = $fields.length
+      if (afterSecMenuItems > secMenuItems) {
+        designPage.navigate()
 
         designPage.deleteSecondaryLastItem()
 
         designPage.saveChanges()
-        designPage.takeScreenshot(5, 3)
+      }
+    })
+  })
 
-        homePage.navigate()
+  after(() => {
+    cy.clearCookie('ghost-admin-api-session')
+    cy.getCookies().should('be.empty')
+  })
 
-        homePage.getSecondaryMenuAllItems()
-          .should(($menuItems) => {
-            expect($menuItems).to.have.length(fields - 1)
-          })
-          designPage.takeScreenshot(5, 4)
+  it('Creates a link in main navigation with valid data (Positive)', () => {
+    designPage.selectMainLabelFields()
+    .then(($fields) => {
+      // count menu items
+      const fieldsCount = $fields.length
+      designPage.typeMainLabelField(faker.lorem.words(2))
+
+      designPage.typeMainUrlField(faker.internet.url())
+
+      designPage.saveChanges()
+
+      homePage.navigate()
+
+      homePage.getMainMenuAllItems()
+      .should(($fields) => {
+        expect($fields).to.have.length(fieldsCount + 1)
       })
+    })
+  })
+
+  it('Creates a link in main navigation with spaces in both fields (Negative)', () => {
+    designPage.selectMainLabelFields()
+    .then(($fields) => {
+      const fieldsCount = $fields.length
+
+      designPage.typeMainLabelField(staticData[0].spaces)
+
+      designPage.typeMainUrlField(staticData[0].spaces)
+
+      designPage.saveChanges()
+
+      designPage.selectMainLabelFields()
+      .should(($fields) => {
+        expect($fields).to.have.length(fieldsCount)
+      })
+    })
+  })
+
+  it('Creates a link in main navigation with dangerous data in both fields (Positive/Negative)', () => {
+    designPage.selectMainLabelFields()
+    .then(($fields) => {
+      const fieldsCount = $fields.length
+
+      designPage.typeMainLabelField(dynamicData.spec_char)
+
+      designPage.typeMainUrlField(dynamicData.spec_char)
+
+      designPage.saveChanges()
+
+      designPage.selectMainLabelFields()
+      .should(($fields) => {
+        expect($fields).to.have.length(fieldsCount + 1)
+      })
+    })
+  })
+
+  it('Creates a link in main navigation with very long text in both fields (Positive?)', () => {
+    designPage.selectMainLabelFields()
+    .then(($fields) => {
+      const fieldsCount = $fields.length
+
+      designPage.typeMainLabelField(dynamicData.very_long_text)
+
+      designPage.typeMainUrlField(dynamicData.very_long_text)
+
+      designPage.saveChanges()
+
+      designPage.selectMainLabelFields()
+      .should(($fields) => {
+        expect($fields).to.have.length(fieldsCount + 1)
+      })
+    })
+  })
+
+  it('Creates a link in main navigation with text in label and spaces in url (Positive)', () => {
+    designPage.selectMainLabelFields()
+    .then(($fields) => {
+      const fieldsCount = $fields.length
+
+      designPage.typeMainLabelField(dynamicData.text)
+
+      designPage.typeMainUrlField(dynamicData.spaces)
+
+      designPage.saveChanges()
+
+      designPage.selectMainLabelFields()
+      .should(($fields) => {
+        expect($fields).to.have.length(fieldsCount + 1)
+      })
+    })
+  })
+
+  it('Creates a link in main navigation with js code in both fields (Positive)', () => {
+    designPage.selectMainLabelFields()
+    .then(($fields) => {
+      const fieldsCount = $fields.length
+
+      designPage.typeMainLabelField(dynamicData.code)
+
+      designPage.typeMainUrlField(dynamicData.code)
+
+      designPage.saveChanges()
+
+      designPage.selectMainLabelFields()
+      .should(($fields) => {
+        expect($fields).to.have.length(fieldsCount + 1)
+      })
+    })
+  })
+
+  it('Creates a link in secondary navigation with valid data (Positive)', () => {
+    designPage.typeSecondaryLabelField(faker.lorem.words(2))
+
+    designPage.typeSecondaryUrlField(faker.internet.url())
+
+    designPage.saveChanges()
+
+    homePage.navigate()
+
+    homePage.getSecondaryMenuAllItems()
+    .should(($fields) => {
+      expect($fields).to.have.length(secMenuItems + 1)
+    })
+  })
+
+  it('Creates a link in secondary navigation with spaces in both fields (Negative)', () => {
+    designPage.typeSecondaryLabelField(staticData[0].spaces)
+
+    designPage.typeSecondaryUrlField(staticData[0].spaces)
+
+    designPage.saveChanges()
+
+    homePage.navigate()
+
+    homePage.getSecondaryMenuAllItems()
+    .should(($fields) => {
+      expect($fields).to.have.length(secMenuItems)
+    })
+  })
+
+  it('Creates a link in secondary navigation with dangerous data in both fields (Positive/Negative)', () => {
+    designPage.typeSecondaryLabelField(dynamicData.spec_char)
+
+    designPage.typeSecondaryUrlField(dynamicData.spec_char)
+
+    designPage.saveChanges()
+
+    homePage.navigate()
+
+    homePage.getSecondaryMenuAllItems()
+    .should(($fields) => {
+      expect($fields).to.have.length(secMenuItems + 1)
+    })
+  })
+
+  it('Creates a link in secondary navigation with very long text in both fields (Positive?)', () => {
+    designPage.typeSecondaryLabelField(dynamicData.very_long_text)
+
+    designPage.typeSecondaryUrlField(dynamicData.very_long_text)
+
+    designPage.saveChanges()
+
+    homePage.navigate()
+
+    homePage.getSecondaryMenuAllItems()
+    .should(($fields) => {
+      expect($fields).to.have.length(secMenuItems + 1)
+    })
+  })
+
+  it('Creates a link in secondary navigation with text in label and spaces in url (Positive)', () => {
+    designPage.typeSecondaryLabelField(dynamicData.text)
+
+    designPage.typeSecondaryUrlField(dynamicData.spaces)
+
+    designPage.saveChanges()
+
+    homePage.navigate()
+
+    homePage.getSecondaryMenuAllItems()
+    .should(($fields) => {
+      expect($fields).to.have.length(secMenuItems + 1)
+    })
+  })
+
+  it('Creates a link in secondary navigation with js code in both fields (Positive)', () => {
+    designPage.typeSecondaryLabelField(dynamicData.code)
+
+    designPage.typeSecondaryUrlField(dynamicData.code)
+
+    designPage.saveChanges()
+
+    homePage.navigate()
+
+    homePage.getSecondaryMenuAllItems()
+    .should(($fields) => {
+      expect($fields).to.have.length(secMenuItems + 1)
+    })
   })
 })
