@@ -11,7 +11,7 @@ export class Page {
     screenPath = Cypress.config('ghostUnderTest')+'/page-'
 
     goToPagesSection() {
-        cy.get('a[href*="#/pages/"]').click({force: true})
+        cy.get('a[href*="#/pages/"]').first().click({force: true})
     }
 
     getAndVisitUrl(selector) {

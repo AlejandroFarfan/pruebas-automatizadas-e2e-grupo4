@@ -2,20 +2,30 @@
 
 import { Login } from "../page-objects/login"
 import {Page} from "../page-objects/page";
+import * as faker from "faker";
 
 const login = new Login()
 const page = new Page()
 
 var pageData = require('../external-data/pages-data.js')
 
+before(() => {
+    login.login(true)
+    Cypress.Cookies.defaults({
+        preserve: 'ghost-admin-api-session',
+    })
+})
+
 Object.keys(pageData).forEach(str => {
-    console.log(str);
+
     pageData[str].forEach(data => {
         if(str === 'apriori-positive' ||
             str === 'random-positive') {
             context('Pages positive', () => {
+
+
                 beforeEach(() => {
-                    login.login(true)
+                    // login.login(true)
                     page.goToPagesSection()
                 })
                 it('Add and edit page', () => {
@@ -25,10 +35,11 @@ Object.keys(pageData).forEach(str => {
                     )
                 })
             })
-        }else {
+        }else if(str === 'apriori-negative' ||
+            str === 'random-negative') {
             context('Pages negative', () => {
                 beforeEach(()=>{
-                    login.login(true)
+                    // login.login(true)
                     page.goToPagesSection()
                 })
                 it('Add and edit page and check error', () => {
@@ -42,5 +53,10 @@ Object.keys(pageData).forEach(str => {
 
     })
 })
+
+after(() => {
+    cy.clearCookie('ghost-admin-api-session')
+    cy.getCookies().should('be.empty')
+});
 
 
