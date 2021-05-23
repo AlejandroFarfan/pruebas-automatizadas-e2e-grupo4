@@ -17,12 +17,12 @@ describe('Testing posts creation', () => {
         login.login(true)
         Cypress.Cookies.defaults({
             preserve: 'ghost-admin-api-session',
-          })
+        })
         for (let i = 0; i < 10; i++) {
             bigTitles.push(faker.lorem.word(6).repeat(faker.datatype.number(20)))
             if(bigTitles[i] === "")
             {
-                bigTitles[i] = faker.lorem.word(6)
+                bigTitles[i] = faker.datatype.number(1400)
             }
         }
     })

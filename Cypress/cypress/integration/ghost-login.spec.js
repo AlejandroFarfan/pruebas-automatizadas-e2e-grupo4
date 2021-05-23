@@ -16,11 +16,8 @@ describe('Testing admin user login', () => {
         login.login(true)
     })
 
-    it('update user name', () => {
-        login.login(true);
-        userPage.clickOnUserMenu();
-        userPage.clickOnUserProfile();
-        userPage.updateUserName(faker.name.findName());
-        userPage.clickOnUserProfileSave()
-    })
+    after(() => {
+        cy.clearCookie('ghost-admin-api-session')
+        cy.getCookies().should('be.empty')
+    });
 })

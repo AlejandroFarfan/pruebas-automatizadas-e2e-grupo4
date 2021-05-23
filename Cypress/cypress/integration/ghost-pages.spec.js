@@ -8,7 +8,12 @@ const login = new Login()
 const page = new Page()
 
 var pageData = require('../external-data/pages-data.js')
-
+before(() => {
+    login.login(true)
+    Cypress.Cookies.defaults({
+        preserve: 'ghost-admin-api-session',
+    })
+})
 Object.keys(pageData).forEach(str => {
 
     pageData[str].forEach(data => {
@@ -17,7 +22,6 @@ Object.keys(pageData).forEach(str => {
             context('Pages positive', () => {
 
                 beforeEach(() => {
-                    login.login(true)
                     page.goToPagesSection()
                 })
                 it('Add and edit page', () => {
@@ -32,7 +36,6 @@ Object.keys(pageData).forEach(str => {
             context('Pages negative', () => {
 
                 beforeEach(()=>{
-                    login.login(true)
                     page.goToPagesSection()
                 })
                 it('Add and edit page and check error', () => {
@@ -47,7 +50,10 @@ Object.keys(pageData).forEach(str => {
 
     })
 })
-
+after(() => {
+    cy.clearCookie('ghost-admin-api-session')
+    cy.getCookies().should('be.empty')
+});
 
 
 
