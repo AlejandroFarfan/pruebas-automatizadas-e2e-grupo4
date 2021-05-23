@@ -1,9 +1,14 @@
 {
   "name": "pruebas-automatizadas-e2e-grupo4",
   "version": "1.0.0",
+  "scripts": {
+    "test": "cypress open --project ./Cypress",
+    "vtr:backstop": "node backstop/index.js"
+  },
   "dependencies": {},
   "devDependencies": {
     "cypress": "^7.3.0",
-    "faker": "^5.5.3"
+    "faker": "^5.5.3",
+    "backstopjs": "^5.3.2"
   }
 }

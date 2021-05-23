@@ -9,7 +9,7 @@ Feature: Attempt to delete page
       When I click on element having css selector "button.login"
       When I navigate to page "<GHOST_PAGE_SECTION>"
       Then I count elements having css selector ".content-list .gh-list li" and store count in variable
-      Then I click on element having css selector "a[title='Edit this post']"
+      Then I click on element having css selector "a[title='Edit this page']"
       Then I click on element having css selector ".post-settings"
       Then I click on element having css selector "form > .gh-btn > span"
       Then I click on element having css selector ".gh-btn-red"

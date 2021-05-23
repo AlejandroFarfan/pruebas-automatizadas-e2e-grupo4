@@ -1,5 +1,5 @@
 # MSIW4103-2021-12 - Entregable Semana 6
-## Pruebas de Ghost 3.3.0 con capturas de pantalla respectivas para cada paso de los escenarios
+## Pruebas de Ghost 3.42.5 con capturas de pantalla respectivas para cada paso de los escenarios
 
 Escenarios de pruebas automatizados por:
 
@@ -23,7 +23,7 @@ Escenarios de pruebas automatizados por:
 * incluir en el path la ubicacion del platform tools que esta dentro de la carpeta del SDK de Android
 * El driver Chromedriver instalado en su máquina. (https://chromedriver.chromium.org/downloads).
 * node 12.20.1
-* Ghost version 3.3.0 (Se debe contar con un usuario **user@email.com** y la clave para este usuario debe ser **abc123xyz456**)
+* Ghost version 3.42.5 (Se debe contar con un usuario **user@email.com** y la clave para este usuario debe ser **abc123xyz456**)
 
 ### Para las pruebas con cypress se debe: 
 
@@ -83,4 +83,32 @@ Administrar enlaces de navegación
 Manejo de usuarios
 1. Invalid login: Intenga registrarse en el sistema con un nombre de usuario y contraseña aleatorio.
 2. Valid login: Se autentica en el sistema con los nombres de usuario y contraseñas del archivo de de configuración.
-3. update user name: Luego del login, se accede a la información de perfil de usuario y se actualiza el nombre del usuario
+3. Update user name: Luego del login, se accede a la información de perfil de usuario y se actualiza el nombre del usuario
+
+## Escenarios para VRT
+1. Invalid login: kraken-resemble
+2. Update user name: cypress-resemble
+3. Creates a link in main navigation: cypress-backstop
+4. Creates a link in secondary navigation: cypress-backstop
+5. Attempt to create post without contents: cypress-resemble
+6. Edit post with invalid title length: kraken-resemble
+7. Edit first page and publish it: cypress-resemble
+8. Edit first page and publish it: kraken-resemble
+9. New Tag should be visible on post settings: cypress-backstop
+10. internal tags should start by #: cypress-backstop
+
+## VRT con resemble
+1. Moverse a la carpeta resemble-report
+2. En la terminal ejecutar el comando node index.js
+3. Dirigirse a la carpeta results y abrir report.html
+
+## VRT con backstop
+1. ejecutar npm run vtr:backstop desde la raiz
+
+---
+
+### Changelog (Tags/Releases)
+Tenemos los siguientes tags o releases para identificar fácilmente los distintos entregables, y que el tutor o persona que califique, se ubique mejor:
+- **Versión actual**: Semana 6 - 40 escenarios funcionales para Ghost 3.42.5 y toma de screenshots. Generación de reportes con ResembleJS y BackstopJS
+- [Semana 6 - 40 escenarios funcionales para Ghost 3.3.0 y toma de screenshots en cada paso.](https://github.com/AlejandroFarfan/pruebas-automatizadas-e2e-grupo4/tree/semana-6-3.3.0)
+- [Semana 5 - 40 escenarios funcionales para Ghost 3.3.0](https://github.com/AlejandroFarfan/pruebas-automatizadas-e2e-grupo4/tree/semana-5-3.3.0)
