@@ -18,8 +18,9 @@ Escenarios de pruebas automatizados por:
 * node 12.20.1
 * Ghost version 3.42.5 (Se debe contar con un usuario **user@email.com** y la clave para este usuario debe ser **abc123xyz456**)
 
-### Para las pruebas con cypress se debe: 
+### Para las pruebas con Cypress se debe: 
 
+0. "[Solicitar permiso para CORS](https://cors-anywhere.herokuapp.com/corsdemo)" a Heroku, de acuerdo con lo indicado en el tutorial del curso, para poder usar el API generado en Mockaroo
 1. Desde la terminal de comandos dirigirse a la raíz del proyecto
 2. Ejecutar `npm install`
 2. Actualizar el archivo _Cypress/cypress.json_ con las valores correctos de los parametros de la aplicación bajo pruebas
