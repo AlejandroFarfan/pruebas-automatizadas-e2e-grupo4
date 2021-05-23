@@ -1,8 +1,10 @@
 export class HomePage {
+  publicSite = Cypress.config('ghostUrl').split('ghost/')[0]
+
   navigate() {
     cy.wait(1000)
 
-    cy.visit('http://localhost:2368/')
+    cy.visit(this.publicSite)
   }
 
   getMainMenuLastItem() {
@@ -28,5 +30,9 @@ export class HomePage {
   getSecondaryMenuAllItems() {
     return cy.get('header nav')
       .find('.site-nav-right ul li')
+  }
+
+  getSecondaryMenu() {
+    return cy.get('header nav .site-nav-right')
   }
 }

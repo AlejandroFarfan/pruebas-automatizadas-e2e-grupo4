@@ -1,6 +1,7 @@
 export class DesignPage {
   path = Cypress.config('ghostUnderTest') + '/'
   scenario = 'design-scenario-'
+  adminUrl = Cypress.config('ghostUrl')
 
   // sc: Scenario, ss: Screenshot
   takeScreenshot(scNumber, ssNumber) {
@@ -8,9 +9,14 @@ export class DesignPage {
     cy.screenshot(this.path + this.scenario + scNumber + '-' + ssNumber, { capture: 'viewport' })
   }
 
+  navigateToAdmin() {
+    cy.visit(this.adminUrl)
+  }
+
   navigate() {
-    cy.get('a[href*="design"]')
-      .click()
+    cy.wait(1000)
+
+    cy.visit(this.adminUrl + '#/settings/design')
   }
 
   typeMainLabelField(text) {
@@ -46,6 +52,8 @@ export class DesignPage {
   }
 
   selectMainLabelFields() {
+    cy.wait(1000)
+
     return cy.get('#settings-navigation > .sortable-objects > div .gh-blognav-label > input')
   }
 
@@ -67,7 +75,13 @@ export class DesignPage {
       .type(url)
   }
 
+  getSecondaryLabelsContainer() {
+    return cy.get('#secondary-navigation > .sortable-objects')
+  }
+
   selectSecondaryLabelFields() {
+    cy.wait(1000)
+
     return cy.get('#secondary-navigation > .sortable-objects > div .gh-blognav-label > input')
   }
 

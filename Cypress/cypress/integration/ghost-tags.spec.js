@@ -8,15 +8,15 @@ describe('Tags E2E testing', () => {
     const tagPage = new TagPage()
     const scenarios = [
         {
-            color: { type: 'hexaDecimal', length: 6, source: 'random' },
+            color: { type: 'hexaDecimal', length: 6, source: 'data-pool' },
             positive: false
         },
         {
-            slug: { type: 'slug', length: 2, source: 'random' },
+            slug: { type: 'slug', length: 2, source: 'data-pool' },
             positive: false
         },
         {
-            description: { type: 'words', length: 10, source: 'random' },
+            description: { type: 'words', source: 'data-pool' },
             positive: false
         },
         {
@@ -31,133 +31,133 @@ describe('Tags E2E testing', () => {
             positive: true
         },
         {
-            name: { type: 'words',length:80, source: 'random' },
+            name: { type: 'words', length: 80, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            color: {  type: 'words', length: 1, source: 'random' },
+            color: { type: 'words', length: 1, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 5, source: 'random' },
+            color: { type: 'hexaDecimal', length: 5, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 7, source: 'random' },
+            color: { type: 'hexaDecimal', length: 7, source: 'random' },
             positive: true
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 6, source: 'random' },
+            color: { type: 'hexaDecimal', length: 6, source: 'random' },
             positive: true
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            slug: {  type: 'slug', length: 80, source: 'random' },
+            slug: { type: 'slug', length: 80, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            slug: {  type: 'slug', length: 2, source: 'random' },
+            slug: { type: 'slug', length: 2, source: 'random' },
             positive: true
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            slug: {  type: 'words', length: 2, source: 'random' },
+            slug: { type: 'words', length: 2, source: 'random' },
             positive: true
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 6, source: 'random' },
-            slug: {  type: 'slug', length: 2, source: 'random' },
+            color: { type: 'hexaDecimal', length: 6, source: 'random' },
+            slug: { type: 'slug', length: 2, source: 'random' },
             positive: true
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            description: {  type: 'words', length: 80, source: 'random' },
+            description: { type: 'words', length: 80, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            description: {  type: 'words', length: 10, source: 'random' },
+            description: { type: 'words', length: 10, source: 'random' },
             positive: true
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 6, source: 'random' },
-            description: {  type: 'words', length: 10, source: 'random' },
+            color: { type: 'hexaDecimal', length: 6, source: 'random' },
+            description: { type: 'words', length: 10, source: 'random' },
             positive: true
         },
         {
             name: { type: 'words', length: 2, source: 'random' },
-            description: {  type: 'words', length: 10, source: 'random' },
-            slug: {  type: 'slug', length: 2, source: 'random' },
+            description: { type: 'words', length: 10, source: 'random' },
+            slug: { type: 'slug', length: 2, source: 'random' },
             positive: true
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            color: {  type: 'words', length: 1, source: 'random' },
+            color: { type: 'words', length: 1, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 5, source: 'random' },
+            color: { type: 'hexaDecimal', length: 5, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 7, source: 'random' },
+            color: { type: 'hexaDecimal', length: 7, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 6, source: 'random' },
+            color: { type: 'hexaDecimal', length: 6, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            slug: {  type: 'slug', length: 80, source: 'random' },
+            slug: { type: 'slug', length: 80, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            slug: {  type: 'slug', length: 2, source: 'random' },
+            slug: { type: 'slug', length: 2, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            slug: {  type: 'words', length: 2, source: 'random' },
+            slug: { type: 'words', length: 2, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 6, source: 'random' },
-            slug: {  type: 'slug', length: 2, source: 'random' },
+            color: { type: 'hexaDecimal', length: 6, source: 'random' },
+            slug: { type: 'slug', length: 2, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            description: {  type: 'words', length: 80, source: 'random' },
+            description: { type: 'words', length: 80, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            description: {  type: 'words', length: 10, source: 'random' },
+            description: { type: 'words', length: 10, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            color: {  type: 'hexaDecimal', length: 6, source: 'random' },
-            description: {  type: 'words', length: 10, source: 'random' },
+            color: { type: 'hexaDecimal', length: 6, source: 'random' },
+            description: { type: 'words', length: 10, source: 'random' },
             positive: false
         },
         {
             name: { type: 'words', length: 80, source: 'random' },
-            description: {  type: 'words', length: 10, source: 'random' },
-            slug: {  type: 'slug', length: 2, source: 'random' },
+            description: { type: 'words', length: 10, source: 'random' },
+            slug: { type: 'slug', length: 2, source: 'random' },
             positive: false
         },
     ]
@@ -167,7 +167,7 @@ describe('Tags E2E testing', () => {
         login.login(true)
         Cypress.Cookies.defaults({
             preserve: 'ghost-admin-api-session',
-          })
+        })
     })
 
     beforeEach(() => {
