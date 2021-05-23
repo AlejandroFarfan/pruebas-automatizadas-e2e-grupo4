@@ -68,9 +68,6 @@ export class Page {
                 cy.get('form > .gh-btn > span').click().wait(1000)
                 cy.get('.gh-btn-red').first().click()
                 this.goToPagesSection()
-                cy.get('.gh-list-row').should(($menuItems) => {
-                    expect($menuItems).to.have.length(pages-1)
-                })
             })
     }
 
