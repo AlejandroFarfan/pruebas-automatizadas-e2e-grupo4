@@ -9,13 +9,6 @@ const page = new Page()
 
 var pageData = require('../external-data/pages-data.js')
 
-before(() => {
-    login.login(true)
-    Cypress.Cookies.defaults({
-        preserve: 'ghost-admin-api-session',
-    })
-})
-
 Object.keys(pageData).forEach(str => {
 
     pageData[str].forEach(data => {
@@ -23,9 +16,8 @@ Object.keys(pageData).forEach(str => {
             str === 'random-positive') {
             context('Pages positive', () => {
 
-
                 beforeEach(() => {
-                    // login.login(true)
+                    login.login(true)
                     page.goToPagesSection()
                 })
                 it('Add and edit page', () => {
@@ -38,8 +30,9 @@ Object.keys(pageData).forEach(str => {
         }else if(str === 'apriori-negative' ||
             str === 'random-negative') {
             context('Pages negative', () => {
+
                 beforeEach(()=>{
-                    // login.login(true)
+                    login.login(true)
                     page.goToPagesSection()
                 })
                 it('Add and edit page and check error', () => {
@@ -48,15 +41,13 @@ Object.keys(pageData).forEach(str => {
                         (str === 'random-negative') ? data.paragraph() : data.paragraph
                     )
                 })
+
             })
         }
 
     })
 })
 
-after(() => {
-    cy.clearCookie('ghost-admin-api-session')
-    cy.getCookies().should('be.empty')
-});
+
 
 
