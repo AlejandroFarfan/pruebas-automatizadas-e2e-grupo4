@@ -62,7 +62,7 @@ export class TagPage {
     }
 
     clickOnSaveTag() {
-        cy.get('button>span').contains('Save').click()
+        cy.get('button>span').contains('Save').click().wait(400)
     }
 
     getTagWeb() {
@@ -103,7 +103,6 @@ export class TagPage {
     }
 
     checkSaved(positive) {
-        cy.get('button>span').contains('Saved').should(positive ? 'exist' : 'not.exist')
         cy.get('button>span').contains('Retry').should(positive ? 'not.exist' : 'exist')
     }
 
