@@ -27,6 +27,15 @@ Escenarios de pruebas automatizados por:
 3. Ejecutar `cypress open --project ./Cypress`
 4. En la ventana que se despliega, hacer clic donde dice "Run * integration specs"
 
+### Para las pruebas con Monkeys: 
+
+0. Se debe contar con un usuario **user@email.com** y la clave para este usuario debe ser **abc123xyz456**
+1. Desde la terminal de comandos dirigirse a la carpeta _Monkey_
+2. Ejecutar `npm install`
+3. Ejecutar `npm run monkey`
+4. Las pruebas se ejecutaran Headless y al final el resultado (video e informe) estará en la carpeta _Monkey/resul_
+
+
 ### Técnicas de generación de datos usadas
 
 En la [wiki](https://github.com/AlejandroFarfan/pruebas-automatizadas-e2e-grupo4/wiki/Estrategias-120-escenarios) podrá encontrar la descripción de las técnicas usadas para la generación de datos y la distribución de la misma en las 120 pruebas.
