@@ -1,0 +1,18 @@
+{
+    "scPaths": {
+        "ghost1": "./VRT/screenshots/3.3.0/",
+        "ghost2": "./VRT/screenshots/3.42.5/"
+    },
+    "scenarios": [
+        {
+            "fileName": "tag-scenario1_step",
+            "stepsCount": 9,
+            "name": "New Tag should be visible on post settings"
+        },
+        {
+            "fileName": "tag-scenario4_step",
+            "stepsCount": 6,
+            "name": "internal tags should start by hash"
+        }
+    ]
+}
