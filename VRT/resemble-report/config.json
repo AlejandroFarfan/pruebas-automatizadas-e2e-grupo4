@@ -1,0 +1,36 @@
+{
+    "scPaths": {
+        "ghost1": "./VRT/screenshots/3.3.0/",
+        "ghost2": "./VRT/screenshots/3.42.5/"
+    },
+    "scenarios": {
+        "data": [
+            {"fileName": "login.invalid-login", "stepsCount": 4, "name": "Invalid login"},
+            {"fileName": "update-user-name", "stepsCount": 4, "name": "Update user name"},
+            {"fileName": "design-scenario-1", "stepsCount": 4, "name": "Creates a link in main navigation"},
+            {"fileName": "design-scenario-4", "stepsCount": 4, "name": "Creates a link in secondary navigation"},
+            {"fileName": "post-scenario-1", "stepsCount": 3, "name": "Attempt to create post without contents"},
+            {"fileName": "post.edit-invalid", "stepsCount": 10, "name": "Edit post with invalid title length"},
+            {"fileName": "page-scenario3_step", "stepsCount": 9, "name": "Edit first page and publish it-Cypress"},
+            {"fileName": "page.edit-publish-page", "stepsCount": 9, "name": "Edit first page and publish it-Kraken"}
+        ]
+    },
+    "misMatchThreshold": 2,
+    "options":{
+        "output": {
+            "errorColor": {
+                "red": 255,
+                "green": 0,
+                "blue": 255
+            },
+            "errorType": "movement",
+            "largeImageThreshold": 1200,
+            "useCrossOrigin": false,
+            "outputDiff": true
+        },
+        "scaleToSameSize": true,
+        "ignore": "antialiasing"
+    },
+    "viewportHeight":600, 
+    "viewportWidth":800
+}
