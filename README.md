@@ -14,7 +14,7 @@ Escenarios de pruebas automatizados por:
 ## Estrategia de pruebas
 [Enlace al documento](https://drive.google.com/file/d/1PPEFhe5-fZG6U9qRPtbaz2AQoYPboKzO/view?usp=sharing)
 
-[Video](https://drive.google.com/file/d/1PPEFhe5-fZG6U9qRPtbaz2AQoYPboKzO/view?usp=sharing)
+[Video](https://drive.google.com/file/d/17chn3vf4dm1qZ-8kiAzQrIkvBTCLlRDz/view?usp=sharing)
 
 ## Se necesita tener instalado y configurado: 
 * Ruby + DevKit, en una versión igual o superior a la 2.20. (https://www.ruby-lang.org/es/documentation/installation/)
