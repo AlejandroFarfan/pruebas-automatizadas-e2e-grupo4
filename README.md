@@ -33,7 +33,15 @@ Escenarios de pruebas automatizados por:
 1. Desde la terminal de comandos dirigirse a la carpeta _Monkey_
 2. Ejecutar `npm install`
 3. Ejecutar `npm run monkey`
-4. Las pruebas se ejecutaran Headless y al final el resultado (video e informe) estará en la carpeta _Monkey/resul_
+4. Las pruebas se ejecutaran Headless y al final el resultado (video e informe) estará en la carpeta _Monkey/results_
+
+### Para las pruebas con Rippers: 
+
+0. Se debe contar con un usuario **user@email.com** y la clave para este usuario debe ser **abc123xyz456**
+1. Desde la terminal de comandos dirigirse a la carpeta _Ripper_
+2. Ejecutar `npm install`
+3. Ejecutar `node index.js`
+4. Las pruebas se ejecutaran Headless y al final el resultado (informe html) estará en la carpeta _Ripper/results_
 
 
 ### Técnicas de generación de datos usadas
