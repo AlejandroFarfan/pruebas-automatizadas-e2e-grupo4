@@ -1,5 +1,5 @@
 # MSIW4103-2021-12 - Entregable Semana 8
-## Estrategia de pruebas para Ghost 3.42.5
+**Estrategia de pruebas para Ghost 3.42.5**
 
 Escenarios de pruebas automatizados por:
 
@@ -101,7 +101,7 @@ Manejo de usuarios
 3. Update user name: Luego del login, se accede a la información de perfil de usuario y se actualiza el nombre del usuario
 
 ## Pruebas de regresión visual (VRT)
-### Para el análisis con Resemble.js
+### Para el análisis con ResembleJS
 1. Desde la terminal de comandos dirigirse a la raíz del proyecto
 2. Ejecutar `npm install`
 3. Ejecutar `npm run vrt:resemble`
@@ -139,7 +139,7 @@ En la [wiki](https://github.com/AlejandroFarfan/pruebas-automatizadas-e2e-grupo4
 
 ---
 
-### Changelog (Tags/Releases)
+## Changelog (Tags/Releases)
 Tenemos los siguientes tags o releases para identificar fácilmente los distintos entregables, y que el tutor o persona que califique, se ubique mejor:
 - [Semana 8 - Ejecución de la primera semana de la estrategia de pruebas para Ghost 3.42.5](https://github.com/AlejandroFarfan/pruebas-automatizadas-e2e-grupo4/tree/semana-8-3.42.5)
 - [Semana 7 - 120 escenarios funcionales con técnicas de generación de datos para Ghost 3.42.5](https://github.com/AlejandroFarfan/pruebas-automatizadas-e2e-grupo4/tree/semana-7-3.42.5)
